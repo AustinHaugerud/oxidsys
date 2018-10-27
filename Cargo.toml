@@ -4,3 +4,5 @@ version = "0.1.0"
 authors = ["AustinHaugerud <austin15328@hotmail.com>"]
 
 [dependencies]
+clap = "*"
+nom = "4.1.1"
