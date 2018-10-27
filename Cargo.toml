@@ -1,0 +1,6 @@
+[package]
+name = "oxidsys"
+version = "0.1.0"
+authors = ["AustinHaugerud <austin15328@hotmail.com>"]
+
+[dependencies]
