@@ -1,0 +1,604 @@
+use std::collections::HashSet;
+
+pub const MULTIPLAYER_EVENT_SET_ITEM_SELECTION: u32 = 0;
+pub const MULTIPLAYER_EVENT_SET_BOT_SELECTION: u32 = 1;
+pub const MULTIPLAYER_EVENT_ADMIN_START_MAP: u32 = 2;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_MAX_NUM_PLAYERS: u32 = 3;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_NUM_BOTS_IN_TEAM: u32 = 4;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_FRIENDLY_FIRE: u32 = 5;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_GHOST_MODE: u32 = 6;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_CONTROL_BLOCK_DIR: u32 = 7;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_ADD_TO_SERVERS_LIST: u32 = 8;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_RESPAWN_PERIOD: u32 = 9;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_GAME_MAX_MINUTES: u32 = 10;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_ROUND_MAX_SECONDS: u32 = 11;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_GAME_MAX_POINTS: u32 = 12;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_POINT_GAINED_FROM_FLAGS: u32 = 13;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_POINT_GAINED_FROM_CAPTURING_FLAG: u32 = 14;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_SERVER_NAME: u32 = 15;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_GAME_PASSWORD: u32 = 16;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_TEAM_FACTION: u32 = 17;
+pub const MULTIPLAYER_EVENT_OPEN_ADMIN_PANEL: u32 = 18;
+pub const MULTIPLAYER_EVENT_CHANGE_TEAM_NO: u32 = 19;
+pub const MULTIPLAYER_EVENT_CHANGE_TROOP_ID: u32 = 20;
+pub const MULTIPLAYER_EVENT_START_NEW_POLL: u32 = 21;
+pub const MULTIPLAYER_EVENT_ANSWER_TO_POLL: u32 = 22;
+pub const MULTIPLAYER_EVENT_ADMIN_KICK_PLAYER: u32 = 23;
+pub const MULTIPLAYER_EVENT_ADMIN_BAN_PLAYER: u32 = 24;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_NUM_BOTS_VOTEABLE: u32 = 25;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_FACTIONS_VOTEABLE: u32 = 26;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_MAPS_VOTEABLE: u32 = 27;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_PLAYER_RESPAWN_AS_BOT: u32 = 28;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_COMBAT_SPEED: u32 = 29;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_RESPAWN_COUNT: u32 = 30;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_KICK_VOTEABLE: u32 = 31;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_BAN_VOTEABLE: u32 = 32;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_VALID_VOTE_RATIO: u32 = 33;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_AUTO_TEAM_BALANCE_LIMIT: u32 = 34;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_WELCOME_MESSAGE: u32 = 35;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_INITIAL_GOLD_MULTIPLIER: u32 = 36;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_BATTLE_EARNINGS_MULTIPLIER: u32 = 37;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_ROUND_EARNINGS_MULTIPLIER: u32 = 38;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_MELEE_FRIENDLY_FIRE: u32 = 39;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_FRIENDLY_FIRE_DAMAGE_SELF_RATIO: u32 = 40;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_FRIENDLY_FIRE_DAMAGE_FRIEND_RATIO: u32 = 41;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_ALLOW_PLAYER_BANNERS: u32 = 42;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_FORCE_DEFAULT_ARMOR: u32 = 43;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_ANTI_CHEAT: u32 = 44;
+pub const MULTIPLAYER_EVENT_OPEN_GAME_RULES: u32 = 45;
+pub const MULTIPLAYER_EVENT_OFFER_DUEL: u32 = 46;
+pub const MULTIPLAYER_EVENT_ADMIN_SET_DISALLOW_RANGED_WEAPONS: u32 = 47;
+//INVASION MODE START
+pub const MULTIPLAYER_EVENT_OTHER_EVENTS: u32 = 48;
+
+//server events
+pub const MULTIPLAYER_EVENT_RETURN_MAX_NUM_PLAYERS: u32 = 50;
+pub const MULTIPLAYER_EVENT_RETURN_NUM_BOTS_IN_TEAM: u32 = 51;
+pub const MULTIPLAYER_EVENT_RETURN_FRIENDLY_FIRE: u32 = 52;
+pub const MULTIPLAYER_EVENT_RETURN_GHOST_MODE: u32 = 53;
+pub const MULTIPLAYER_EVENT_RETURN_CONTROL_BLOCK_DIR: u32 = 54;
+pub const MULTIPLAYER_EVENT_RETURN_COMBAT_SPEED: u32 = 55;
+pub const MULTIPLAYER_EVENT_RETURN_ADD_TO_SERVERS_LIST: u32 = 56;
+pub const MULTIPLAYER_EVENT_RETURN_RESPAWN_PERIOD: u32 = 57;
+pub const MULTIPLAYER_EVENT_RETURN_GAME_MAX_MINUTES: u32 = 58;
+pub const MULTIPLAYER_EVENT_RETURN_ROUND_MAX_SECONDS: u32 = 59;
+pub const MULTIPLAYER_EVENT_RETURN_GAME_MAX_POINTS: u32 = 60;
+pub const MULTIPLAYER_EVENT_RETURN_POINT_GAINED_FROM_FLAGS: u32 = 61;
+pub const MULTIPLAYER_EVENT_RETURN_POINT_GAINED_FROM_CAPTURING_FLAG: u32 = 62;
+pub const MULTIPLAYER_EVENT_RETURN_SERVER_NAME: u32 = 63;
+pub const MULTIPLAYER_EVENT_RETURN_GAME_PASSWORD: u32 = 64;
+pub const MULTIPLAYER_EVENT_RETURN_GAME_TYPE: u32 = 65;
+pub const MULTIPLAYER_EVENT_RETURN_CONFIRMATION: u32 = 66;
+pub const MULTIPLAYER_EVENT_RETURN_REJECTION: u32 = 67;
+pub const MULTIPLAYER_EVENT_SHOW_MULTIPLAYER_MESSAGE: u32 = 68;
+pub const MULTIPLAYER_EVENT_DRAW_THIS_ROUND: u32 = 69;
+pub const MULTIPLAYER_EVENT_SET_ATTACHED_SCENE_PROP: u32 = 70;
+pub const MULTIPLAYER_EVENT_SET_TEAM_FLAG_SITUATION: u32 = 71;
+pub const MULTIPLAYER_EVENT_SET_TEAM_SCORE: u32 = 72;
+pub const MULTIPLAYER_EVENT_SET_NUM_AGENTS_AROUND_FLAG: u32 = 73;
+pub const MULTIPLAYER_EVENT_ASK_FOR_POLL: u32 = 74;
+pub const MULTIPLAYER_EVENT_CHANGE_FLAG_OWNER: u32 = 75;
+pub const MULTIPLAYER_EVENT_USE_ITEM: u32 = 76;
+pub const MULTIPLAYER_EVENT_SET_SCENE_PROP_OPEN_OR_CLOSE: u32 = 77;
+pub const MULTIPLAYER_EVENT_SET_ROUND_START_TIME: u32 = 78;
+pub const MULTIPLAYER_EVENT_FORCE_START_TEAM_SELECTION: u32 = 79;
+pub const MULTIPLAYER_EVENT_START_DEATH_MODE: u32 = 80;
+pub const MULTIPLAYER_EVENT_RETURN_NUM_BOTS_VOTEABLE: u32 = 81;
+pub const MULTIPLAYER_EVENT_RETURN_FACTIONS_VOTEABLE: u32 = 82;
+pub const MULTIPLAYER_EVENT_RETURN_MAPS_VOTEABLE: u32 = 83;
+pub const MULTIPLAYER_EVENT_RETURN_NEXT_TEAM_FACTION: u32 = 84;
+pub const MULTIPLAYER_EVENT_RETURN_PLAYER_RESPAWN_AS_BOT: u32 = 85;
+pub const MULTIPLAYER_EVENT_SET_PLAYER_SCORE_KILL_DEATH: u32 = 86;
+pub const MULTIPLAYER_EVENT_SET_DAY_TIME: u32 = 87;
+pub const MULTIPLAYER_EVENT_RETURN_RESPAWN_COUNT: u32 = 88;
+pub const MULTIPLAYER_EVENT_RETURN_PLAYER_RESPAWN_SPENT: u32 = 89;
+pub const MULTIPLAYER_EVENT_RETURN_KICK_VOTEABLE: u32 = 90;
+pub const MULTIPLAYER_EVENT_RETURN_BAN_VOTEABLE: u32 = 91;
+pub const MULTIPLAYER_EVENT_RETURN_VALID_VOTE_RATIO: u32 = 92;
+pub const MULTIPLAYER_EVENT_RETURN_AUTO_TEAM_BALANCE_LIMIT: u32 = 93;
+pub const MULTIPLAYER_EVENT_RETURN_INITIAL_GOLD_MULTIPLIER: u32 = 94;
+pub const MULTIPLAYER_EVENT_RETURN_BATTLE_EARNINGS_MULTIPLIER: u32 = 95;
+pub const MULTIPLAYER_EVENT_RETURN_ROUND_EARNINGS_MULTIPLIER: u32 = 96;
+pub const MULTIPLAYER_EVENT_RETURN_RENAMING_SERVER_ALLOWED: u32 = 97;
+pub const MULTIPLAYER_EVENT_RETURN_CHANGING_GAME_TYPE_ALLOWED: u32 = 98;
+pub const MULTIPLAYER_EVENT_RETURN_MELEE_FRIENDLY_FIRE: u32 = 99;
+pub const MULTIPLAYER_EVENT_RETURN_FRIENDLY_FIRE_DAMAGE_SELF_RATIO: u32 = 100;
+pub const MULTIPLAYER_EVENT_RETURN_FRIENDLY_FIRE_DAMAGE_FRIEND_RATIO: u32 = 101;
+pub const MULTIPLAYER_EVENT_RETURN_ALLOW_PLAYER_BANNERS: u32 = 102;
+pub const MULTIPLAYER_EVENT_RETURN_FORCE_DEFAULT_ARMOR: u32 = 103;
+pub const MULTIPLAYER_EVENT_RETURN_ANTI_CHEAT: u32 = 104;
+pub const MULTIPLAYER_EVENT_RETURN_OPEN_GAME_RULES: u32 = 105;
+pub const MULTIPLAYER_EVENT_RETURN_MAX_NUM_BOTS: u32 = 106;
+pub const MULTIPLAYER_EVENT_RETURN_SERVER_MISSION_TIMER_WHILE_PLAYER_JOINED: u32 = 107;
+pub const MULTIPLAYER_EVENT_SHOW_DUEL_REQUEST: u32 = 108;
+pub const MULTIPLAYER_EVENT_START_DUEL: u32 = 109;
+pub const MULTIPLAYER_EVENT_CANCEL_DUEL: u32 = 110;
+pub const MULTIPLAYER_EVENT_SHOW_SERVER_MESSAGE: u32 = 111;
+pub const MULTIPLAYER_EVENT_RETURN_DISALLOW_RANGED_WEAPONS: u32 = 112;
+//INVASION MODE START
+pub const MULTIPLAYER_EVENT_RETURN_SET_BOT_SELECTION: u32 = 113;
+pub const MULTIPLAYER_EVENT_RETURN_TEAM_RATIO: u32 = 114;
+pub const MULTIPLAYER_EVENT_RETURN_SQUAD_SIZE: u32 = 115;
+pub const MULTIPLAYER_EVENT_RETURN_DISALLOW_GRANADES: u32 = 116;
+pub const MULTIPLAYER_EVENT_RETURN_SOUND_AT_POS: u32 = 117;
+pub const MULTIPLAYER_EVENT_RETURN_ENABLE_CBF_SQUAD_RATIO: u32 = 118;
+pub const MULTIPLAYER_EVENT_RETURN_CBF_SQUAD_RATIO: u32 = 119;
+pub const MULTIPLAYER_EVENT_COOP_DROP_ITEM: u32 = 120;
+pub const MULTIPLAYER_EVENT_COOP_CHEST_OPENED: u32 = 121;
+pub const MULTIPLAYER_EVENT_RETURN_CCOOP_DIFFICULTY: u32 = 122;
+pub const MULTIPLAYER_EVENT_CCOOP_VICTORY_MESSAGE: u32 = 123;
+pub const MULTIPLAYER_EVENT_CCOOP_RETURN_OF_THE_KING: u32 = 124;
+//INVASION MODE END
+
+//multiplayer message types
+pub const MULTIPLAYER_MESSAGE_TYPE_AUTO_TEAM_BALANCE_DONE: u32 = 2;
+pub const MULTIPLAYER_MESSAGE_TYPE_AUTO_TEAM_BALANCE_NEXT: u32 = 3;
+pub const MULTIPLAYER_MESSAGE_TYPE_CAPTURE_THE_FLAG_SCORE: u32 = 4;
+pub const MULTIPLAYER_MESSAGE_TYPE_FLAG_RETURNED_HOME: u32 = 5;
+pub const MULTIPLAYER_MESSAGE_TYPE_CAPTURE_THE_FLAG_STOLE: u32 = 6;
+pub const MULTIPLAYER_MESSAGE_TYPE_POLL_RESULT: u32 = 7;
+pub const MULTIPLAYER_MESSAGE_TYPE_FLAG_NEUTRALIZED: u32 = 8;
+pub const MULTIPLAYER_MESSAGE_TYPE_FLAG_CAPTURED: u32 = 9;
+pub const MULTIPLAYER_MESSAGE_TYPE_FLAG_IS_PULLING: u32 = 10;
+pub const MULTIPLAYER_MESSAGE_TYPE_AUTO_TEAM_BALANCE_NO_NEED: u32 = 11;
+pub const MULTIPLAYER_MESSAGE_TYPE_ROUND_RESULT_IN_BATTLE_MODE: u32 = 12;
+pub const MULTIPLAYER_MESSAGE_TYPE_ROUND_RESULT_IN_SIEGE_MODE: u32 = 13;
+pub const MULTIPLAYER_MESSAGE_TYPE_ROUND_DRAW: u32 = 14;
+pub const MULTIPLAYER_MESSAGE_TYPE_TARGET_DESTROYED: u32 = 15;
+pub const MULTIPLAYER_MESSAGE_TYPE_DEFENDERS_SAVED_N_TARGETS: u32 = 16;
+pub const MULTIPLAYER_MESSAGE_TYPE_ATTACKERS_WON_THE_ROUND: u32 = 17;
+pub const MULTIPLAYER_MESSAGE_TYPE_START_DEATH_MODE: u32 = 18;
+
+//multiplayer game type indices
+pub const MULTIPLAYER_GAME_TYPE_DEATHMATCH: u32 = 0;
+pub const MULTIPLAYER_GAME_TYPE_TEAM_DEATHMATCH: u32 = 1;
+pub const MULTIPLAYER_GAME_TYPE_BATTLE: u32 = 2;
+pub const MULTIPLAYER_GAME_TYPE_DESTROY: u32 = 3;
+pub const MULTIPLAYER_GAME_TYPE_CAPTURE_THE_FLAG: u32 = 4;
+pub const MULTIPLAYER_GAME_TYPE_HEADQUARTERS: u32 = 5;
+pub const MULTIPLAYER_GAME_TYPE_SIEGE: u32 = 6;
+pub const MULTIPLAYER_GAME_TYPE_DUEL: u32 = 7;
+//INVASION MODE START
+pub const MULTIPLAYER_GAME_TYPE_CAPTAIN_COOP: u32 = 8;
+pub const MULTIPLAYER_NUM_GAME_TYPES: u32 = 9;
+//INVASION MODE END
+
+//admin panel value ranges
+pub const MULTIPLAYER_ROUND_MAX_SECONDS_MIN: u32 = 60;
+pub const MULTIPLAYER_ROUND_MAX_SECONDS_MAX: u32 = 901;
+pub const MULTIPLAYER_RESPAWN_PERIOD_MIN: u32 = 3;
+pub const MULTIPLAYER_RESPAWN_PERIOD_MAX: u32 = 31; //can only be 30 seconds max (due to agent deletion after that period)
+
+pub const MULTIPLAYER_SIEGE_MOD_DEFENDER_TEAM_EXTRA_RESPAWN_TIME: u32 = 27; //It was 20 in 1.113 but it is increased it to 25 in 1.121 because defenders were mostly defeating enemy.
+pub const MULTIPLAYER_NEW_AGENTS_FINISH_SPAWNING_TIME: u32 = 30;
+pub const MULTIPLAYER_MAX_POSSIBLE_PLAYER_ID: u32 = 1000;
+
+//team 1 and team 2 are 0 and 1 respectively
+pub const MULTI_TEAM_SPECTATOR: u32 = 2;
+pub const MULTI_TEAM_UNASSIGNED: u32 = MULTI_TEAM_SPECTATOR + 1;
+
+pub const MULTI_DATA_MAPS_FOR_GAME_TYPE_BEGIN: u32 = 0;
+pub const MULTI_DATA_MAPS_FOR_GAME_TYPE_END: u32 = MULTI_DATA_MAPS_FOR_GAME_TYPE_BEGIN + 30;
+pub const MULTI_DATA_TROOP_BUTTON_INDICES_BEGIN: u32 = MULTI_DATA_MAPS_FOR_GAME_TYPE_END;
+pub const MULTI_DATA_TROOP_BUTTON_INDICES_END: u32 = MULTI_DATA_TROOP_BUTTON_INDICES_BEGIN + 16; //maximum 16 troops per faction
+pub const MULTI_DATA_ITEM_BUTTON_INDICES_BEGIN: u32 = MULTI_DATA_TROOP_BUTTON_INDICES_END;
+pub const MULTI_DATA_ITEM_BUTTON_INDICES_END: u32 = MULTI_DATA_ITEM_BUTTON_INDICES_BEGIN + 100; //maximum 100 items per troop
+pub const MULTI_DATA_FLAG_OWNER_BEGIN: u32 = MULTI_DATA_ITEM_BUTTON_INDICES_END;
+pub const MULTI_DATA_FLAG_OWNER_END: u32 = MULTI_DATA_FLAG_OWNER_BEGIN + 10; //maximum of 10 flags per scene
+pub const MULTI_DATA_FLAG_PLAYERS_AROUND_BEGIN: u32 = MULTI_DATA_FLAG_OWNER_END;
+pub const MULTI_DATA_FLAG_PLAYERS_AROUND_END: u32 = MULTI_DATA_FLAG_PLAYERS_AROUND_BEGIN + 10; //maximum of 10 flags per scene
+pub const MULTI_DATA_FLAG_OWNED_SECONDS_BEGIN: u32 = MULTI_DATA_FLAG_PLAYERS_AROUND_END;
+pub const MULTI_DATA_FLAG_OWNED_SECONDS_END: u32 = MULTI_DATA_FLAG_OWNED_SECONDS_BEGIN + 10; //maximum of 10 flags per scene
+pub const MULTI_DATA_FLAG_PULL_CODE_BEGIN: u32 = MULTI_DATA_FLAG_OWNED_SECONDS_END;
+pub const MULTI_DATA_FLAG_PULL_CODE_END: u32 = MULTI_DATA_FLAG_PULL_CODE_BEGIN + 10; //maximum of 10 flags per scene
+                                                                                     //INVASION MODE START
+pub const MULTI_DATA_CCOOP_WAVE_SPAWN_DATA_BEGIN: u32 = MULTI_DATA_FLAG_PULL_CODE_END;
+pub const MULTI_DATA_CCOOP_WAVE_SPAWN_DATA_END: u32 = MULTI_DATA_CCOOP_WAVE_SPAWN_DATA_BEGIN + 16; //maximum of 5 different troop types, amounts and entry points (+ 1 for count)
+pub const MULTI_DATA_EQUIPMENT_HOLDER_BEGIN: u32 = MULTI_DATA_CCOOP_WAVE_SPAWN_DATA_END;
+pub const MULTI_DATA_EQUIPMENT_HOLDER_END: u32 = MULTI_DATA_EQUIPMENT_HOLDER_BEGIN + 9;
+pub const MULTI_DATA_PLAYER_INDEX_LIST_BEGIN: u32 = MULTI_DATA_EQUIPMENT_HOLDER_END;
+//INVASION MODE END
+
+//Entry points 100..109 is used for showing initial points for moveable and usable scene props like siege ladder.
+pub const MULTI_ENTRY_POINTS_FOR_USABLE_ITEMS_START: u32 = 100;
+pub const MULTI_ENTRY_POINTS_FOR_USABLE_ITEMS_END: u32 =
+    MULTI_ENTRY_POINTS_FOR_USABLE_ITEMS_START + 10;
+
+//multi_item_class_type_other = 0
+pub const MULTI_ITEM_CLASS_TYPE_SWORD: u32 = 1;
+pub const MULTI_ITEM_CLASS_TYPE_AXE: u32 = 2;
+pub const MULTI_ITEM_CLASS_TYPE_BLUNT: u32 = 3;
+pub const MULTI_ITEM_CLASS_TYPE_WAR_PICKS: u32 = 4;
+pub const MULTI_ITEM_CLASS_TYPE_CLEAVERS: u32 = 5;
+pub const MULTI_ITEM_CLASS_TYPE_TWO_HANDED_SWORD: u32 = 6;
+pub const MULTI_ITEM_CLASS_TYPE_TWO_HANDED_AXE: u32 = 7;
+pub const MULTI_ITEM_CLASS_TYPE_SPEAR: u32 = 8;
+pub const MULTI_ITEM_CLASS_TYPE_LANCE: u32 = 9;
+pub const MULTI_ITEM_CLASS_TYPE_SMALL_SHIELD: u32 = 10;
+pub const MULTI_ITEM_CLASS_TYPE_LARGE_SHIELD: u32 = 11;
+pub const MULTI_ITEM_CLASS_TYPE_BOW: u32 = 12;
+pub const MULTI_ITEM_CLASS_TYPE_CROSSBOW: u32 = 13;
+pub const MULTI_ITEM_CLASS_TYPE_ARROW: u32 = 14;
+pub const MULTI_ITEM_CLASS_TYPE_BOLT: u32 = 15;
+pub const MULTI_ITEM_CLASS_TYPE_THROWING: u32 = 16;
+pub const MULTI_ITEM_CLASS_TYPE_THROWING_AXE: u32 = 17;
+pub const MULTI_ITEM_CLASS_TYPE_HORSE: u32 = 18;
+pub const MULTI_ITEM_CLASS_TYPE_LIGHT_ARMOR: u32 = 19;
+pub const MULTI_ITEM_CLASS_TYPE_MEDIUM_ARMOR: u32 = 20;
+pub const MULTI_ITEM_CLASS_TYPE_HEAVY_ARMOR: u32 = 21;
+pub const MULTI_ITEM_CLASS_TYPE_LIGHT_HELM: u32 = 22;
+pub const MULTI_ITEM_CLASS_TYPE_HEAVY_HELM: u32 = 23;
+pub const MULTI_ITEM_CLASS_TYPE_LIGHT_FOOT: u32 = 24;
+pub const MULTI_ITEM_CLASS_TYPE_HEAVY_FOOT: u32 = 25;
+pub const MULTI_ITEM_CLASS_TYPE_GLOVE: u32 = 26;
+
+pub const MULTI_ITEM_CLASS_TYPE_MELEE_WEAPONS_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_SWORD;
+pub const MULTI_ITEM_CLASS_TYPE_MELEE_WEAPONS_END: u32 = MULTI_ITEM_CLASS_TYPE_SMALL_SHIELD;
+pub const MULTI_ITEM_CLASS_TYPE_RANGED_WEAPONS_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_BOW;
+pub const MULTI_ITEM_CLASS_TYPE_RANGED_WEAPONS_END: u32 = MULTI_ITEM_CLASS_TYPE_HORSE;
+pub const MULTI_ITEM_CLASS_TYPE_SHIELDS_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_MELEE_WEAPONS_END;
+pub const MULTI_ITEM_CLASS_TYPE_SHIELDS_END: u32 = MULTI_ITEM_CLASS_TYPE_BOW;
+
+pub const MULTI_ITEM_CLASS_TYPE_WEAPONS_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_SWORD;
+pub const MULTI_ITEM_CLASS_TYPE_WEAPONS_END: u32 = MULTI_ITEM_CLASS_TYPE_HORSE;
+pub const MULTI_ITEM_CLASS_TYPE_HORSES_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_WEAPONS_END;
+pub const MULTI_ITEM_CLASS_TYPE_HORSES_END: u32 = MULTI_ITEM_CLASS_TYPE_LIGHT_ARMOR;
+pub const MULTI_ITEM_CLASS_TYPE_BODIES_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_HORSES_END;
+pub const MULTI_ITEM_CLASS_TYPE_BODIES_END: u32 = MULTI_ITEM_CLASS_TYPE_LIGHT_HELM;
+pub const MULTI_ITEM_CLASS_TYPE_HEADS_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_BODIES_END;
+pub const MULTI_ITEM_CLASS_TYPE_HEADS_END: u32 = MULTI_ITEM_CLASS_TYPE_LIGHT_FOOT;
+pub const MULTI_ITEM_CLASS_TYPE_FEET_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_HEADS_END;
+pub const MULTI_ITEM_CLASS_TYPE_FEET_END: u32 = MULTI_ITEM_CLASS_TYPE_GLOVE;
+pub const MULTI_ITEM_CLASS_TYPE_GLOVES_BEGIN: u32 = MULTI_ITEM_CLASS_TYPE_FEET_END;
+pub const MULTI_ITEM_CLASS_TYPE_GLOVES_END: u32 = MULTI_ITEM_CLASS_TYPE_GLOVE + 1;
+
+pub const MULTI_TROOP_CLASS_OTHER: u32 = 0;
+pub const MULTI_TROOP_CLASS_INFANTRY: u32 = 1;
+pub const MULTI_TROOP_CLASS_SPEARMAN: u32 = 2;
+pub const MULTI_TROOP_CLASS_CAVALRY: u32 = 3;
+pub const MULTI_TROOP_CLASS_ARCHER: u32 = 4;
+pub const MULTI_TROOP_CLASS_CROSSBOWMAN: u32 = 5;
+pub const MULTI_TROOP_CLASS_MOUNTED_ARCHER: u32 = 6;
+pub const MULTI_TROOP_CLASS_MOUNTED_CROSSBOWMAN: u32 = 7;
+
+pub const MULTI_NUM_VALID_ENTRY_POINTS: u32 = 64;
+pub const MULTI_NUM_VALID_ENTRY_POINTS_DIV_2: u32 = 32;
+
+//normal money management system
+pub const MULTI_BATTLE_ROUND_TEAM_MONEY_ADD: u32 = 500;
+pub const MULTI_DESTROY_SAVE_OR_DESTROY_TARGET_MONEY_ADD: u32 = 100;
+pub const MULTI_DESTROY_TARGET_MONEY_ADD: u32 = 1500;
+pub const MULTI_INITIAL_GOLD_VALUE: u32 = 1000;
+pub const MULTI_MAX_GOLD_THAT_CAN_BE_STORED: u32 = 15000;
+
+pub const MULTI_KILLER_AGENT_STANDARD_MONEY_ADD: u32 = 150; //(2/3 = 100 for battle & destroy, 3/3 = 150 for siege, 4/3 = 200 for deathmatch/team deathmatch/capture the flag/headquarters)
+pub const MULTI_KILLER_AGENT_LOOT_PERCENTAGE_SHARE: u32 = 12; //(2/3 = 8% for battle & destroy, 3/3 = 12% for siege, 4/3 = 16% for deathmatch/team deathmatch/capture the flag/headquarters)
+pub const MULTI_DEAD_AGENT_LOOT_PERCENTAGE_SHARE: u32 = 48; //(2/3 = 32% for battle & destroy, 3/3 = 48% for siege, 4/3 = 64% for deathmatch/team deathmatch/capture the flag/headquarters)
+pub const MULTI_MINIMUM_GOLD: u32 = 1000; //(same in all modes)
+
+pub const MULTI_MINIMUM_TARGET_HEALTH: u32 = 1200;
+
+pub const MULTI_MAX_SECONDS_FLAG_CAN_STAY_IN_GROUND: u32 = 60;
+
+pub const MULTI_CAPTURE_THE_FLAG_SCORE_FLAG_RETURNING: u32 = 1;
+
+pub const MULTI_INITIAL_SPAWN_POINT_TEAM_1: u32 = 0;
+pub const MULTI_INITIAL_SPAWN_POINT_TEAM_2: u32 = 32;
+pub const MULTI_BASE_POINT_TEAM_1: u32 = 64;
+pub const MULTI_BASE_POINT_TEAM_2: u32 = 65;
+pub const MULTI_SIEGE_FLAG_POINT: u32 = 66;
+pub const MULTI_DEATH_MODE_POINT: u32 = 67;
+
+pub const MULTI_HEADQUARTERS_POLE_HEIGHT: u32 = 900;
+pub const MULTI_HEADQUARTERS_FLAG_HEIGHT_TO_WIN: u32 = 800; //used in sd death mode
+pub const MULTI_HEADQUARTERS_FLAG_INITIAL_HEIGHT: u32 = 100; //used in sd death mode
+pub const MULTI_HEADQUARTERS_MAX_DISTANCE_SQ_TO_RAISE_FLAGS: u32 = 1600; //4m * 4m * 100 = 1600
+pub const MULTI_HEADQUARTERS_DISTANCE_SQ_TO_SET_FLAG: u32 = 8100; //9m * 9m * 100 = 8100
+pub const MULTI_HEADQUARTERS_DISTANCE_SQ_TO_CHANGE_FLAG: u32 = 400; //2m * 2m * 100 = 400
+pub const MULTI_HEADQUARTERS_DISTANCE_TO_CHANGE_FLAG: u32 = 200; //2m * 100 = 200
+pub const MULTI_DISTANCE_SQ_TO_USE_BELFRY: u32 = 36; //6m * 6m = 36 (there is no * 100 for this one because it uses get_sq_distance_between_positions_in_meters instead of get_sq_distance_between_positions)
+pub const MULTI_MAX_SQ_DIST_BETWEEN_AGENTS_TO_LONGER_MOF_TIME: u32 = 49; //7m * 7m = 49m
+pub const MIN_ALLOWED_FLAG_HEIGHT_DIFFERENCE_TO_MAKE_SCORE: u32 = 50;
+
+//these two values are about when master of field will be kicked
+pub const MULTIPLAYER_BATTLE_FORMULA_VALUE_A: u32 = 15;
+pub const MULTIPLAYER_BATTLE_FORMULA_VALUE_B: u32 = 18000; //think about 18000-20000 if death mod very much happens.
+
+pub const MULTIPLAYER_SPAWN_ABOVE_OPT_ENEMY_DIST_POINT: u32 = 32; //while finding most suitable spawn point if nearest enemy is further than 32 meters give negative points to that spawn point
+pub const MULTIPLAYER_SPAWN_MIN_ENEMY_DIST_LIMIT: u32 = 45; //while finding most suitable spawn point if nearest enemy is closer than 45 meters give negative points to that spawn point, (squared increase)
+
+pub const MULTIPLAYER_POLL_DISABLE_PERIOD: u32 = 900; //15 minutes
+
+//INVASION MODE START
+pub const MULTI_DISTANCE_TO_CAPTAIN_SPAW_POINT: u32 = 15 * 100;
+pub const MULTI_KILLER_CAPTAIN_ADD: u32 = 60;
+pub const MULTI_CAPTAIN_RECOMENDED_PLAYERS_MAX: u32 = 16;
+pub const MULTI_KILLER_CAPTAIN_COOP_ADD: u32 = 200;
+//multi_captain_coop_round_duration_in_sec = 600 # 10 minutes
+//INVASION MODE END
+
+//menu variables
+pub const ESCAPE_MENU_ITEM_HEIGHT: u32 = 40;
+
+pub const BIGNUM: u128 = 0x40000000000000000000000000000000;
+
+pub const OP_NUM_VALUE_BITS: u32 = 24 + 32;
+
+pub const TAG_REGISTER: u32 = 1;
+pub const TAG_VARIABLE: u32 = 2;
+pub const TAG_STRING: u32 = 3;
+pub const TAG_ITEM: u32 = 4;
+pub const TAG_TROOP: u32 = 5;
+pub const TAG_FACTION: u32 = 6;
+pub const TAG_QUEST: u32 = 7;
+pub const TAG_PARTY_TPL: u32 = 8;
+pub const TAG_PARTY: u32 = 9;
+pub const TAG_SCENE: u32 = 10;
+pub const TAG_MISSION_TPL: u32 = 11;
+pub const TAG_MENU: u32 = 12;
+pub const TAG_SCRIPT: u32 = 13;
+pub const TAG_PARTICLE_SYS: u32 = 14;
+pub const TAG_SCENE_PROP: u32 = 15;
+pub const TAG_SOUND: u32 = 16;
+pub const TAG_LOCAL_VARIABLE: u32 = 17;
+pub const TAG_MAP_ICON: u32 = 18;
+pub const TAG_SKILL: u32 = 19;
+pub const TAG_MESH: u32 = 20;
+pub const TAG_PRESENTATION: u32 = 21;
+pub const TAG_QUICK_STRING: u32 = 22;
+pub const TAG_TRACK: u32 = 23;
+pub const TAG_TABLEAU: u32 = 24;
+pub const TAG_ANIMATION: u32 = 25;
+pub const TAGS_END: u32 = 26;
+
+const OPMASK_REGISTER: u64 = (TAG_REGISTER as u64) << (OP_NUM_VALUE_BITS as u64);
+const OPMASK_VARIABLE: u64 = (TAG_VARIABLE as u64) << (OP_NUM_VALUE_BITS as u64);
+
+//opmask_string             =  TAG_STRING         << op_num_value_bits
+//opmask_item_index         =  TAG_ITEM           << op_num_value_bits
+//opmask_troop_index        =  TAG_TROOP          << op_num_value_bits
+//opmask_faction_index      =  TAG_FACTION        << op_num_value_bits
+
+const OPMASK_QUEST_INDEX: u64 = (TAG_QUEST as u64) << (OP_NUM_VALUE_BITS as u64);
+
+//opmask_p_template_index   =  TAG_PARTY_TPL      << op_num_value_bits
+//opmask_party_index        =  TAG_PARTY          << op_num_value_bits
+//opmask_scene_index        =  TAG_SCENE          << op_num_value_bits
+//opmask_mission_tpl_index  =  TAG_MISSION_TPL    << op_num_value_bits
+//opmask_menu_index         =  TAG_MENU           << op_num_value_bits
+//opmask_script             =  TAG_SCRIPT         << op_num_value_bits
+//opmask_particle_sys       =  TAG_PARTICLE_SYS   << op_num_value_bits
+//opmask_scene_prop         =  TAG_SCENE_PROP     << op_num_value_bits
+//opmask_sound              =  TAG_SOUND          << op_num_value_bits
+//opmask_map_icon           =  TAG_MAP_ICON       << op_num_value_bits
+
+const OPMASK_LOCAL_VARIABLE: u64 = (TAG_LOCAL_VARIABLE as u64) << (OP_NUM_VALUE_BITS as u64);
+const OPMASK_QUICK_STRING: u64 = (TAG_QUICK_STRING as u64) << (OP_NUM_VALUE_BITS as u64);
+
+pub fn reg(register_number: u32) -> u64 {
+    if register_number < 65 {
+        panic!("Error register_number invalid.");
+    }
+
+    OPMASK_REGISTER | (register_number as u64)
+}
+
+pub fn find_object(objects: &HashSet<String>, id: &str) -> Option<String> {
+    objects.get(id).map(|s| s.to_string())
+}
+
+pub const S0: u32 = 0;
+pub const S1: u32 = 1;
+pub const S2: u32 = 2;
+pub const S3: u32 = 3;
+pub const S4: u32 = 4;
+pub const S5: u32 = 5;
+pub const S6: u32 = 6;
+pub const S7: u32 = 7;
+pub const S8: u32 = 8;
+pub const S9: u32 = 9;
+pub const S10: u32 = 10;
+pub const S11: u32 = 11;
+pub const S12: u32 = 12;
+pub const S13: u32 = 13;
+pub const S14: u32 = 14;
+pub const S15: u32 = 15;
+pub const S16: u32 = 16;
+pub const S17: u32 = 17;
+pub const S18: u32 = 18;
+pub const S19: u32 = 19;
+pub const S20: u32 = 20;
+pub const S21: u32 = 21;
+pub const S22: u32 = 22;
+pub const S23: u32 = 23;
+pub const S24: u32 = 24;
+pub const S25: u32 = 25;
+pub const S26: u32 = 26;
+pub const S27: u32 = 27;
+pub const S28: u32 = 28;
+pub const S29: u32 = 29;
+pub const S30: u32 = 30;
+pub const S31: u32 = 31;
+pub const S32: u32 = 32;
+pub const S33: u32 = 33;
+pub const S34: u32 = 34;
+pub const S35: u32 = 35;
+pub const S36: u32 = 36;
+pub const S37: u32 = 37;
+pub const S38: u32 = 38;
+pub const S39: u32 = 39;
+pub const S40: u32 = 40;
+pub const S41: u32 = 41;
+pub const S42: u32 = 42;
+pub const S43: u32 = 43;
+pub const S44: u32 = 44;
+pub const S45: u32 = 45;
+pub const S46: u32 = 46;
+pub const S47: u32 = 47;
+pub const S48: u32 = 48;
+pub const S49: u32 = 49;
+pub const S50: u32 = 50;
+pub const S51: u32 = 51;
+pub const S52: u32 = 52;
+pub const S53: u32 = 53;
+pub const S54: u32 = 54;
+pub const S55: u32 = 55;
+pub const S56: u32 = 56;
+pub const S57: u32 = 57;
+pub const S58: u32 = 58;
+pub const S59: u32 = 59;
+pub const S60: u32 = 60;
+pub const S61: u32 = 61;
+pub const S62: u32 = 62;
+pub const S63: u32 = 63;
+pub const S64: u32 = 64;
+pub const S65: u32 = 65;
+pub const S66: u32 = 66;
+pub const S67: u32 = 67;
+
+pub const POS0: u32 = 0;
+pub const POS1: u32 = 1;
+pub const POS2: u32 = 2;
+pub const POS3: u32 = 3;
+pub const POS4: u32 = 4;
+pub const POS5: u32 = 5;
+pub const POS6: u32 = 6;
+pub const POS7: u32 = 7;
+pub const POS8: u32 = 8;
+pub const POS9: u32 = 9;
+pub const POS10: u32 = 10;
+pub const POS11: u32 = 11;
+pub const POS12: u32 = 12;
+pub const POS13: u32 = 13;
+pub const POS14: u32 = 14;
+pub const POS15: u32 = 15;
+pub const POS16: u32 = 16;
+pub const POS17: u32 = 17;
+pub const POS18: u32 = 18;
+pub const POS19: u32 = 19;
+pub const POS20: u32 = 20;
+pub const POS21: u32 = 21;
+pub const POS22: u32 = 22;
+pub const POS23: u32 = 23;
+pub const POS24: u32 = 24;
+pub const POS25: u32 = 25;
+pub const POS26: u32 = 26;
+pub const POS27: u32 = 27;
+pub const POS28: u32 = 28;
+pub const POS29: u32 = 29;
+pub const POS30: u32 = 30;
+pub const POS31: u32 = 31;
+pub const POS32: u32 = 32;
+pub const POS33: u32 = 33;
+pub const POS34: u32 = 34;
+pub const POS35: u32 = 35;
+pub const POS36: u32 = 36;
+pub const POS37: u32 = 37;
+pub const POS38: u32 = 38;
+pub const POS39: u32 = 39;
+pub const POS40: u32 = 40;
+pub const POS41: u32 = 41;
+pub const POS42: u32 = 42;
+pub const POS43: u32 = 43;
+pub const POS44: u32 = 44;
+pub const POS45: u32 = 45;
+pub const POS46: u32 = 46;
+pub const POS47: u32 = 47;
+pub const POS48: u32 = 48;
+pub const POS49: u32 = 49;
+pub const POS50: u32 = 50;
+pub const POS51: u32 = 51;
+pub const POS52: u32 = 52;
+pub const POS53: u32 = 53;
+pub const POS54: u32 = 54;
+pub const POS55: u32 = 55;
+pub const POS56: u32 = 56;
+pub const POS57: u32 = 57;
+pub const POS58: u32 = 58;
+pub const POS59: u32 = 59;
+pub const POS60: u32 = 60;
+pub const POS61: u32 = 61;
+pub const POS62: u32 = 62;
+pub const POS63: u32 = 63;
+
+pub const POS_BELFRY_BEGIN: u32 = 64;
+
+pub const REG0: u64 = OPMASK_REGISTER | 0;
+pub const REG1: u64 = OPMASK_REGISTER | 1;
+pub const REG2: u64 = OPMASK_REGISTER | 2;
+pub const REG3: u64 = OPMASK_REGISTER | 3;
+pub const REG4: u64 = OPMASK_REGISTER | 4;
+pub const REG5: u64 = OPMASK_REGISTER | 5;
+pub const REG6: u64 = OPMASK_REGISTER | 6;
+pub const REG7: u64 = OPMASK_REGISTER | 7;
+pub const REG8: u64 = OPMASK_REGISTER | 8;
+pub const REG9: u64 = OPMASK_REGISTER | 9;
+pub const REG10: u64 = OPMASK_REGISTER | 10;
+pub const REG11: u64 = OPMASK_REGISTER | 11;
+pub const REG12: u64 = OPMASK_REGISTER | 12;
+pub const REG13: u64 = OPMASK_REGISTER | 13;
+pub const REG14: u64 = OPMASK_REGISTER | 14;
+pub const REG15: u64 = OPMASK_REGISTER | 15;
+pub const REG16: u64 = OPMASK_REGISTER | 16;
+pub const REG17: u64 = OPMASK_REGISTER | 17;
+pub const REG18: u64 = OPMASK_REGISTER | 18;
+pub const REG19: u64 = OPMASK_REGISTER | 19;
+pub const REG20: u64 = OPMASK_REGISTER | 20;
+pub const REG21: u64 = OPMASK_REGISTER | 21;
+pub const REG22: u64 = OPMASK_REGISTER | 22;
+pub const REG23: u64 = OPMASK_REGISTER | 23;
+pub const REG24: u64 = OPMASK_REGISTER | 24;
+pub const REG25: u64 = OPMASK_REGISTER | 25;
+pub const REG26: u64 = OPMASK_REGISTER | 26;
+pub const REG27: u64 = OPMASK_REGISTER | 27;
+pub const REG28: u64 = OPMASK_REGISTER | 28;
+pub const REG29: u64 = OPMASK_REGISTER | 29;
+pub const REG30: u64 = OPMASK_REGISTER | 30;
+pub const REG31: u64 = OPMASK_REGISTER | 31;
+pub const REG32: u64 = OPMASK_REGISTER | 32;
+pub const REG33: u64 = OPMASK_REGISTER | 33;
+pub const REG34: u64 = OPMASK_REGISTER | 34;
+pub const REG35: u64 = OPMASK_REGISTER | 35;
+pub const REG36: u64 = OPMASK_REGISTER | 36;
+pub const REG37: u64 = OPMASK_REGISTER | 37;
+pub const REG38: u64 = OPMASK_REGISTER | 38;
+pub const REG39: u64 = OPMASK_REGISTER | 39;
+pub const REG40: u64 = OPMASK_REGISTER | 40;
+pub const REG41: u64 = OPMASK_REGISTER | 41;
+pub const REG42: u64 = OPMASK_REGISTER | 42;
+pub const REG43: u64 = OPMASK_REGISTER | 43;
+pub const REG44: u64 = OPMASK_REGISTER | 44;
+pub const REG45: u64 = OPMASK_REGISTER | 45;
+pub const REG46: u64 = OPMASK_REGISTER | 46;
+pub const REG47: u64 = OPMASK_REGISTER | 47;
+pub const REG48: u64 = OPMASK_REGISTER | 48;
+pub const REG49: u64 = OPMASK_REGISTER | 49;
+pub const REG50: u64 = OPMASK_REGISTER | 50;
+pub const REG51: u64 = OPMASK_REGISTER | 51;
+pub const REG52: u64 = OPMASK_REGISTER | 52;
+pub const REG53: u64 = OPMASK_REGISTER | 53;
+pub const REG54: u64 = OPMASK_REGISTER | 54;
+pub const REG55: u64 = OPMASK_REGISTER | 55;
+pub const REG56: u64 = OPMASK_REGISTER | 56;
+pub const REG57: u64 = OPMASK_REGISTER | 57;
+pub const REG58: u64 = OPMASK_REGISTER | 58;
+pub const REG59: u64 = OPMASK_REGISTER | 59;
+pub const REG60: u64 = OPMASK_REGISTER | 60;
+pub const REG61: u64 = OPMASK_REGISTER | 61;
+pub const REG62: u64 = OPMASK_REGISTER | 62;
+pub const REG63: u64 = OPMASK_REGISTER | 63;
+pub const REG65: u64 = OPMASK_REGISTER | 65;
+
+pub const SPF_ALL_TEAMS_ARE_ENEMY: u32 = 0x00000001;
+pub const SPF_IS_HORSEMAN: u32 = 0x00000002;
+pub const SPF_EXAMINE_ALL_SPAWN_POINTS: u32 = 0x00000004;
+pub const SPF_TEAM_0_SPAWN_FAR_FROM_ENTRY_32: u32 = 0x00000008;
+pub const SPF_TEAM_1_SPAWN_FAR_FROM_ENTRY_0: u32 = 0x00000010;
+pub const SPF_TEAM_1_SPAWN_FAR_FROM_ENTRY_66: u32 = 0x00000020;
+pub const SPF_TEAM_0_SPAWN_NEAR_ENTRY_0: u32 = 0x00000040;
+pub const SPF_TEAM_0_SPAWN_NEAR_ENTRY_66: u32 = 0x00000080;
+pub const SPF_TEAM_1_SPAWN_NEAR_ENTRY_32: u32 = 0x00000100;
+pub const SPF_TEAM_0_WALKERS_SPAWN_AT_HIGH_POINTS: u32 = 0x00000200;
+pub const SPF_TEAM_1_WALKERS_SPAWN_AT_HIGH_POINTS: u32 = 0x00000400;
+pub const SPF_TRY_TO_SPAWN_CLOSE_TO_AT_LEAST_ONE_ENEMY: u32 = 0x00000800;
+pub const SPF_CARE_AGENT_TO_AGENT_DISTANCES_LESS: u32 = 0x00001000;
