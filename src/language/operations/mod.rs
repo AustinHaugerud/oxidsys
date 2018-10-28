@@ -1,4 +1,30 @@
-mod flow_control;
+pub mod agents_and_teams;
+pub mod audio;
+pub mod factions;
+pub mod flow_control;
+pub mod game;
+pub mod game_control;
+pub mod game_notes;
+pub mod input;
+pub mod item;
+pub mod math;
+pub mod mercantile;
+pub mod multiplayer;
+pub mod op_modifiers;
+pub mod other;
+pub mod output_and_messages;
+pub mod party;
+pub mod position;
+pub mod presentation;
+pub mod quest;
+pub mod scene_resources;
+pub mod scenes_and_missions;
+pub mod script;
+pub mod string;
+pub mod tableau;
+pub mod trigger;
+pub mod troop;
+pub mod world;
 
 /**
  * A special thank you to Alexander Lomski AKA Lav for providing an excellent basis
@@ -52,8 +78,52 @@ mod flow_control;
 # Cjkjvfnby, shokkueibu.
 */
 
+use std::collections::HashMap;
+
 pub trait Operation {
     fn op_code(&self) -> u16;
-    fn documentation(&self) -> &str;
-    fn identifier(&self) -> &str;
+    fn documentation(&self) -> &'static str;
+    fn identifier(&self) -> &'static str;
+}
+
+fn load_operands_list() -> Vec<Box<Operation>> {
+    let mut result = agents_and_teams::load_operands();
+    result.extend(audio::load_operands());
+    result.extend(factions::load_operands());
+    result.extend(flow_control::load_operands());
+    result.extend(game::load_operands());
+    result.extend(game_control::load_operands());
+    result.extend(game_notes::load_operands());
+    result.extend(input::load_operands());
+    result.extend(item::load_operands());
+    result.extend(math::load_operands());
+    result.extend(mercantile::load_operands());
+    result.extend(multiplayer::load_operands());
+    result.extend(op_modifiers::load_operands());
+    result.extend(other::load_operands());
+    result.extend(output_and_messages::load_operands());
+    result.extend(party::load_operands());
+    result.extend(position::load_operands());
+    result.extend(presentation::load_operands());
+    result.extend(quest::load_operands());
+    result.extend(scene_resources::load_operands());
+    result.extend(scenes_and_missions::load_operands());
+    result.extend(script::load_operands());
+    result.extend(string::load_operands());
+    result.extend(tableau::load_operands());
+    result.extend(trigger::load_operands());
+    result.extend(troop::load_operands());
+    result.extend(world::load_operands());
+    result
+}
+
+pub fn load_operands_map() -> HashMap<&'static str, Box<Operation>> {
+    let list = load_operands_list();
+    let mut map : HashMap<&str, Box<Operation>> = HashMap::new();
+
+    for op in list {
+        map.insert(op.identifier(), op);
+    }
+
+    map
 }

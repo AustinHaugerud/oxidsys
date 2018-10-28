@@ -1,5 +1,5 @@
 mod block;
-mod operations;
+pub mod operations;
 mod script;
 mod statement;
 mod variable;

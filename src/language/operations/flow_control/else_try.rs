@@ -16,11 +16,11 @@ impl Operation for ElseTryOp {
         OP_CODE
     }
 
-    fn documentation(&self) -> &str {
+    fn documentation(&self) -> &'static str {
         DOC
     }
 
-    fn identifier(&self) -> &str {
+    fn identifier(&self) -> &'static str {
         IDENT
     }
 }

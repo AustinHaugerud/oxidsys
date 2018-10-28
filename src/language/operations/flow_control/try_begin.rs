@@ -7,18 +7,20 @@ Opens a conditional block.
 Format: try_begin;
 "#;
 
-const IDENT: &str = "try_begin";
+pub const OP_CODE : u16 = 4;
+
+pub const IDENT: &str = "try_begin";
 
 impl Operation for TryBeginOp {
     fn op_code(&self) -> u16 {
-        unimplemented!()
+        OP_CODE
     }
 
-    fn documentation(&self) -> &str {
-        unimplemented!()
+    fn documentation(&self) -> &'static str {
+        DOC
     }
 
-    fn identifier(&self) -> &str {
+    fn identifier(&self) -> &'static str {
         IDENT
     }
 }

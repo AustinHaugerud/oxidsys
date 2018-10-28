@@ -16,11 +16,11 @@ impl Operation for TryForPartiesOp {
         unimplemented!()
     }
 
-    fn documentation(&self) -> &str {
-        unimplemented!()
+    fn documentation(&self) -> &'static str {
+        DOC
     }
 
-    fn identifier(&self) -> &str {
-        unimplemented!()
+    fn identifier(&self) -> &'static str {
+        IDENT
     }
 }

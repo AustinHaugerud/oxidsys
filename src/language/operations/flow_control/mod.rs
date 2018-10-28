@@ -11,7 +11,7 @@ pub mod try_for_range_backwards;
 
 use language::operations::Operation;
 
-pub fn load_operations() -> Vec<Box<Operation>> {
+pub fn load_operands() -> Vec<Box<Operation>> {
     let mut result: Vec<Box<Operation>> = vec![];
 
     result.push(Box::new(call_script::CallScriptOp {}));
