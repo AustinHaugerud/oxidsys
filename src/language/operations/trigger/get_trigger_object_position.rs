@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 702;
+pub const OP_CODE: u32 = 702;
 
 pub const IDENT: &str = "get_trigger_object_position";
 
 impl Operation for GetTriggerObjectPositionOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

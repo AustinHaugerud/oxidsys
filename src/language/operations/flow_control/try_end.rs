@@ -3,16 +3,16 @@ use language::operations::Operation;
 pub struct TryEndOp;
 
 const DOC: &str = r#"
-Concluded conditional branches.
-Format: try_end;
+Please write me!
+Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 3;
+pub const OP_CODE: u32 = 3;
 
-const IDENT: &str = "try_end";
+pub const IDENT: &str = "try_end";
 
 impl Operation for TryEndOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

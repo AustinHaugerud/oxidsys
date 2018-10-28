@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 715;
+pub const OP_CODE: u32 = 715;
 
 pub const IDENT: &str = "get_sq_distance_between_position_heights";
 
 impl Operation for GetSqDistanceBetweenPositionHeightsOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

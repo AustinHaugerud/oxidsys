@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2114;
+pub const OP_CODE: u32 = 2114;
 
 pub const IDENT: &str = "val_or";
 
 impl Operation for ValOrOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

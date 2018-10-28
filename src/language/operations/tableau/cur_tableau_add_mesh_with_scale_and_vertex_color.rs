@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2000;
+pub const OP_CODE: u32 = 2000;
 
 pub const IDENT: &str = "cur_tableau_add_mesh_with_scale_and_vertex_color";
 
 impl Operation for CurTableauAddMeshWithScaleAndVertexColorOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1890;
+pub const OP_CODE: u32 = 1890;
 
 pub const IDENT: &str = "replace_scene_props";
 
 impl Operation for ReplaceScenePropsOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

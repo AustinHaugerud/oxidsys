@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 255;
+pub const OP_CODE: u32 = 255;
 
 pub const IDENT: &str = "is_edit_mode_enabled";
 
 impl Operation for IsEditModeEnabledOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

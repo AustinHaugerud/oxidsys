@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 77;
+pub const OP_CODE: u32 = 77;
 
 pub const IDENT: &str = "omit_key_once";
 
 impl Operation for OmitKeyOnceOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

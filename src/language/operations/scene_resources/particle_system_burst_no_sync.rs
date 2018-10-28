@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1975;
+pub const OP_CODE: u32 = 1975;
 
 pub const IDENT: &str = "particle_system_burst_no_sync";
 
 impl Operation for ParticleSystemBurstNoSyncOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 491;
+pub const OP_CODE: u32 = 491;
 
 pub const IDENT: &str = "server_set_max_num_players";
 
 impl Operation for ServerSetMaxNumPlayersOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

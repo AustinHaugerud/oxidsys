@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 716;
+pub const OP_CODE: u32 = 716;
 
 pub const IDENT: &str = "position_transform_position_to_parent";
 
 impl Operation for PositionTransformPositionToParentOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

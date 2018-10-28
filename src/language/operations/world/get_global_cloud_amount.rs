@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 90;
+pub const OP_CODE: u32 = 90;
 
 pub const IDENT: &str = "get_global_cloud_amount";
 
 impl Operation for GetGlobalCloudAmountOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

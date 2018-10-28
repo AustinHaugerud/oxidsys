@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 494;
+pub const OP_CODE: u32 = 494;
 
 pub const IDENT: &str = "server_set_melee_friendly_fire";
 
 impl Operation for ServerSetMeleeFriendlyFireOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

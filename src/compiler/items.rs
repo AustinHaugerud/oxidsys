@@ -1,5 +1,4 @@
-use compiler::common;
 
-pub fn compile_items(items_dir: &str) {
+pub fn compile_items(_: &str) {
     unimplemented!()
 }

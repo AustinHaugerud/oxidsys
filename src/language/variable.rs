@@ -14,7 +14,7 @@ mod tests {
         let source = GLOBAL_PREFIX.to_owned() + "g_harvesting_season";
         let res = get_scope_char(&source);
 
-        let (rest, scope_char) = res.unwrap();
+        let (_, scope_char) = res.unwrap();
 
         assert_eq!(scope_char, GLOBAL_PREFIX);
     }
@@ -23,7 +23,7 @@ mod tests {
     fn test_get_scope_char_gets_local() {
         let source = LOCAL_PREFIX.to_owned() + "g_harvesting_season";
         let res = get_scope_char(&source);
-        let (rest, scope_char) = res.unwrap();
+        let (_, scope_char) = res.unwrap();
         assert_eq!(scope_char, LOCAL_PREFIX);
     }
 

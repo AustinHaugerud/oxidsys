@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1305;
+pub const OP_CODE: u32 = 1305;
 
 pub const IDENT: &str = "auto_set_meta_mission_at_end_commited";
 
 impl Operation for AutoSetMetaMissionAtEndCommitedOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

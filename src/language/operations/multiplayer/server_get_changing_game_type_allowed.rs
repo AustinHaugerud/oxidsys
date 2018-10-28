@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 476;
+pub const OP_CODE: u32 = 476;
 
 pub const IDENT: &str = "server_get_changing_game_type_allowed";
 
 impl Operation for ServerGetChangingGameTypeAllowedOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2011;
+pub const OP_CODE: u32 = 2011;
 
 pub const IDENT: &str = "mission_cam_set_position";
 
 impl Operation for MissionCamSetPositionOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

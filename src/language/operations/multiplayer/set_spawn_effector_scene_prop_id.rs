@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 427;
+pub const OP_CODE: u32 = 427;
 
 pub const IDENT: &str = "set_spawn_effector_scene_prop_id";
 
 impl Operation for SetSpawnEffectorScenePropIdOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

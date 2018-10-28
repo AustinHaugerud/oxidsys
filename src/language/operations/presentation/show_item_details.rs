@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 970;
+pub const OP_CODE: u32 = 970;
 
 pub const IDENT: &str = "show_item_details";
 
 impl Operation for ShowItemDetailsOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

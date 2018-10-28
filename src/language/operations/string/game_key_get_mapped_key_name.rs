@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 65;
+pub const OP_CODE: u32 = 65;
 
 pub const IDENT: &str = "game_key_get_mapped_key_name";
 
 impl Operation for GameKeyGetMappedKeyNameOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

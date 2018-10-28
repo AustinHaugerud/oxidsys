@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2396;
+pub const OP_CODE: u32 = 2396;
 
 pub const IDENT: &str = "get_startup_ground_ambient_light";
 
 impl Operation for GetStartupGroundAmbientLightOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

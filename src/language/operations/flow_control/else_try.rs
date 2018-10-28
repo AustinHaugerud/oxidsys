@@ -3,16 +3,16 @@ use language::operations::Operation;
 pub struct ElseTryOp;
 
 const DOC: &str = r#"
-Functions as else or else if in conditional flow.
-Format: else_try;
+Please write me!
+Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 5;
+pub const OP_CODE: u32 = 5;
 
-pub const IDENT: &str = "else_try;";
+pub const IDENT: &str = "else_try";
 
 impl Operation for ElseTryOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

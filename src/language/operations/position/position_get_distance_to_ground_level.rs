@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 793;
+pub const OP_CODE: u32 = 793;
 
 pub const IDENT: &str = "position_get_distance_to_ground_level";
 
 impl Operation for PositionGetDistanceToGroundLevelOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

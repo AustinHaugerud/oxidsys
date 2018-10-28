@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 938;
+pub const OP_CODE: u32 = 938;
 
 pub const IDENT: &str = "create_image_button_overlay_with_tableau_material";
 
 impl Operation for CreateImageButtonOverlayWithTableauMaterialOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

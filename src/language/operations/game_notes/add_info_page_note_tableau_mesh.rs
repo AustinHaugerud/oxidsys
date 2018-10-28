@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1090;
+pub const OP_CODE: u32 = 1090;
 
 pub const IDENT: &str = "add_info_page_note_tableau_mesh";
 
 impl Operation for AddInfoPageNoteTableauMeshOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

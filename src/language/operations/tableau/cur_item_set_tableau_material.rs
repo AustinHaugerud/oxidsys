@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1981;
+pub const OP_CODE: u32 = 1981;
 
 pub const IDENT: &str = "cur_item_set_tableau_material";
 
 impl Operation for CurItemSetTableauMaterialOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

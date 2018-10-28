@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2055;
+pub const OP_CODE: u32 = 2055;
 
 pub const IDENT: &str = "change_screen_quit";
 
 impl Operation for ChangeScreenQuitOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

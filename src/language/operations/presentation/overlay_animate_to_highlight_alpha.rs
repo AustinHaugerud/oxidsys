@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 935;
+pub const OP_CODE: u32 = 935;
 
 pub const IDENT: &str = "overlay_animate_to_highlight_alpha";
 
 impl Operation for OverlayAnimateToHighlightAlphaOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

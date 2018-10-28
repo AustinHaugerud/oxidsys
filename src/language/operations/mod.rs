@@ -80,7 +80,7 @@ pub mod world;
 use std::collections::HashMap;
 
 pub trait Operation {
-    fn op_code(&self) -> u16;
+    fn op_code(&self) -> u32;
     fn documentation(&self) -> &'static str;
     fn identifier(&self) -> &'static str;
 }

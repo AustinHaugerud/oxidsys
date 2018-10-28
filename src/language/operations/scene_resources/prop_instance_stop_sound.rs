@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1882;
+pub const OP_CODE: u32 = 1882;
 
 pub const IDENT: &str = "prop_instance_stop_sound";
 
 impl Operation for PropInstanceStopSoundOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

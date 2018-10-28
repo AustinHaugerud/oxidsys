@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 389;
+pub const OP_CODE: u32 = 389;
 
 pub const IDENT: &str = "multiplayer_send_int_to_server";
 
 impl Operation for MultiplayerSendIntToServerOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1810;
+pub const OP_CODE: u32 = 1810;
 
 pub const IDENT: &str = "scene_prop_get_num_instances";
 
 impl Operation for ScenePropGetNumInstancesOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

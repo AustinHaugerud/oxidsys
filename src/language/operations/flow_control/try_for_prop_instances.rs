@@ -3,16 +3,16 @@ use language::operations::Operation;
 pub struct TryForPropInstancesOp;
 
 const DOC: &str = r#"
-Iterate all prop instances in scene. Optionally specify a prop id.
-Format: try_for_prop_instances <iterator> [prop_id];
+Please write me!
+Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 16;
+pub const OP_CODE: u32 = 16;
 
 pub const IDENT: &str = "try_for_prop_instances";
 
 impl Operation for TryForPropInstancesOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

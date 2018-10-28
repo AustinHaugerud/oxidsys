@@ -1,3 +1,6 @@
+#![allow(dead_code)] // Temporary - We expect a lot of dead code for now, when completion is closer
+                     // turn dead code warnings back on.
+
 extern crate clap;
 
 #[macro_use]
@@ -24,7 +27,7 @@ fn main() {
     let matches = App::new("Oxidsys")
         .subcommand(
             SubCommand::with_name("documentation")
-                .about("Get documentation for item.")
+                .about("Get documentation for operand.")
                 .arg(
                     Arg::with_name("operation")
                         .help("Operation to print documentation for")

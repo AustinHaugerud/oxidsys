@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 718;
+pub const OP_CODE: u32 = 718;
 
 pub const IDENT: &str = "position_copy_rotation";
 
 impl Operation for PositionCopyRotationOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1021;
+pub const OP_CODE: u32 = 1021;
 
 pub const IDENT: &str = "set_camera_follow_party";
 
 impl Operation for SetCameraFollowPartyOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -3,16 +3,16 @@ use language::operations::Operation;
 pub struct TryForPlayersOp;
 
 const DOC: &str = r#"
-Iterate all players in multiplayer. Set optional parameter to 1 to skip server player entry.
-Format: try_for_players <iterator> [skip_server=0];
+Please write me!
+Format: Please write me!
 "#;
 
-const OP_CODE: u16 = 17;
+pub const OP_CODE: u32 = 17;
 
-const IDENT: &str = "try_for_players";
+pub const IDENT: &str = "try_for_players";
 
 impl Operation for TryForPlayersOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

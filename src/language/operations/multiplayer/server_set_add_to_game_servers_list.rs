@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 486;
+pub const OP_CODE: u32 = 486;
 
 pub const IDENT: &str = "server_set_add_to_game_servers_list";
 
 impl Operation for ServerSetAddToGameServersListOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

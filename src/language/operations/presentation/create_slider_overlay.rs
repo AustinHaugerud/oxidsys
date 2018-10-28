@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 914;
+pub const OP_CODE: u32 = 914;
 
 pub const IDENT: &str = "create_slider_overlay";
 
 impl Operation for CreateSliderOverlayOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

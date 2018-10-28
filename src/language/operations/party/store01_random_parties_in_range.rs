@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2255;
+pub const OP_CODE: u32 = 2255;
 
 pub const IDENT: &str = "store01_random_parties_in_range";
 
 impl Operation for Store01RandomPartiesInRangeOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

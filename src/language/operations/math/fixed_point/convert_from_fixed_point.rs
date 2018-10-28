@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2131;
+pub const OP_CODE: u32 = 2131;
 
 pub const IDENT: &str = "convert_from_fixed_point";
 
 impl Operation for ConvertFromFixedPointOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

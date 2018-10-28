@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1999;
+pub const OP_CODE: u32 = 1999;
 
 pub const IDENT: &str = "cur_tableau_add_override_item";
 
 impl Operation for CurTableauAddOverrideItemOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

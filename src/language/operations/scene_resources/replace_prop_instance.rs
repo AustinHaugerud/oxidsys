@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1889;
+pub const OP_CODE: u32 = 1889;
 
 pub const IDENT: &str = "replace_prop_instance";
 
 impl Operation for ReplacePropInstanceOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1816;
+pub const OP_CODE: u32 = 1816;
 
 pub const IDENT: &str = "scene_prop_get_max_hit_points";
 
 impl Operation for ScenePropGetMaxHitPointsOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

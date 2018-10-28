@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1798;
+pub const OP_CODE: u32 = 1798;
 
 pub const IDENT: &str = "set_fog_distance";
 
 impl Operation for SetFogDistanceOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

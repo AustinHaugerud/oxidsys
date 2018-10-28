@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2755;
+pub const OP_CODE: u32 = 2755;
 
 pub const IDENT: &str = "face_keys_set_beard";
 
 impl Operation for FaceKeysSetBeardOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

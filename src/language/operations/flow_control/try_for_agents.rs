@@ -3,16 +3,16 @@ use language::operations::Operation;
 pub struct TryForAgentsOp;
 
 const DOC: &str = r#"
-Iterate over all agents in the scene.
-Format: try_for_agents <iterator>;
+Please write me!
+Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 12;
+pub const OP_CODE: u32 = 12;
 
 pub const IDENT: &str = "try_for_agents";
 
 impl Operation for TryForAgentsOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

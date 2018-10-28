@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 93;
+pub const OP_CODE: u32 = 93;
 
 pub const IDENT: &str = "set_global_haze_amount";
 
 impl Operation for SetGlobalHazeAmountOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

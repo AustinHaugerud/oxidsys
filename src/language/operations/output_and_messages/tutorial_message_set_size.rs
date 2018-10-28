@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1124;
+pub const OP_CODE: u32 = 1124;
 
 pub const IDENT: &str = "tutorial_message_set_size";
 
 impl Operation for TutorialMessageSetSizeOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2051;
+pub const OP_CODE: u32 = 2051;
 
 pub const IDENT: &str = "change_screen_equip_other";
 
 impl Operation for ChangeScreenEquipOtherOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

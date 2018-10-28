@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1809;
+pub const OP_CODE: u32 = 1809;
 
 pub const IDENT: &str = "agent_set_attached_scene_prop_y";
 
 impl Operation for AgentSetAttachedScenePropYOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

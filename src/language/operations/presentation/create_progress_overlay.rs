@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 915;
+pub const OP_CODE: u32 = 915;
 
 pub const IDENT: &str = "create_progress_overlay";
 
 impl Operation for CreateProgressOverlayOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

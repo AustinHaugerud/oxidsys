@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2615;
+pub const OP_CODE: u32 = 2615;
 
 pub const IDENT: &str = "prop_instance_get_current_deform_progress";
 
 impl Operation for PropInstanceGetCurrentDeformProgressOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

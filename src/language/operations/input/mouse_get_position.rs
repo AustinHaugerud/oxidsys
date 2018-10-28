@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 75;
+pub const OP_CODE: u32 = 75;
 
 pub const IDENT: &str = "mouse_get_position";
 
 impl Operation for MouseGetPositionOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

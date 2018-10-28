@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1940;
+pub const OP_CODE: u32 = 1940;
 
 pub const IDENT: &str = "mission_tpl_entry_set_override_flags";
 
 impl Operation for MissionTplEntrySetOverrideFlagsOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

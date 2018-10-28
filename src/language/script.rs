@@ -1,13 +1,12 @@
-use language::VALID_SET;
 
 named!(extract_script_name<&str, &str>, take_until!("("));
 named!(extract_script_params_section<&str, &str>, take_until!("{"));
 named!(extract_script_block<&str, &str>, take_until!("}"));
 
 fn parse_script_sections(input: &str) -> Result<(&str, &str, &str), ()> {
-    let (r1, name) = extract_script_name(input).map_err(|_| {})?;
-    let (r2, params) = extract_script_params_section(r1).map_err(|_| {})?;
-    let (r3, block) = extract_script_block(r2).map_err(|_| {})?;
+    let (r1, _) = extract_script_name(input).map_err(|_| {})?;
+    let (r2, _) = extract_script_params_section(r1).map_err(|_| {})?;
+    let (r3, _) = extract_script_block(r2).map_err(|_| {})?;
 
     Ok((r1.trim(), &r2[1..r2.len() - 1], &r3[1..]))
 }
@@ -16,7 +15,6 @@ fn parse_script_sections(input: &str) -> Result<(&str, &str, &str), ()> {
 mod tests {
 
     use super::extract_script_name;
-    use super::extract_script_params_section;
 
     #[test]
     fn test_parse_script_name_success() {

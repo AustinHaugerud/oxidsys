@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1880;
+pub const OP_CODE: u32 = 1880;
 
 pub const IDENT: &str = "prop_instance_intersects_with_prop_instance";
 
 impl Operation for PropInstanceIntersectsWithPropInstanceOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

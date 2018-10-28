@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 736;
+pub const OP_CODE: u32 = 736;
 
 pub const IDENT: &str = "position_get_scale_y";
 
 impl Operation for PositionGetScaleYOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

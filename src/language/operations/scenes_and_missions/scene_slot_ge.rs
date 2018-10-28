@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 563;
+pub const OP_CODE: u32 = 563;
 
 pub const IDENT: &str = "scene_slot_ge";
 
 impl Operation for SceneSlotGeOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

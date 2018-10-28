@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 425;
+pub const OP_CODE: u32 = 425;
 
 pub const IDENT: &str = "multiplayer_find_spawn_point";
 
 impl Operation for MultiplayerFindSpawnPointOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

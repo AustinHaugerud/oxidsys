@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 991;
+pub const OP_CODE: u32 = 991;
 
 pub const IDENT: &str = "get_level_boundary";
 
 impl Operation for GetLevelBoundaryOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

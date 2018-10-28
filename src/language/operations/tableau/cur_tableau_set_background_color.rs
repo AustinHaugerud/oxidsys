@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1985;
+pub const OP_CODE: u32 = 1985;
 
 pub const IDENT: &str = "cur_tableau_set_background_color";
 
 impl Operation for CurTableauSetBackgroundColorOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

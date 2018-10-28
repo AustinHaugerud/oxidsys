@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2612;
+pub const OP_CODE: u32 = 2612;
 
 pub const IDENT: &str = "prop_instance_deform_in_cycle_loop";
 
 impl Operation for PropInstanceDeformInCycleLoopOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

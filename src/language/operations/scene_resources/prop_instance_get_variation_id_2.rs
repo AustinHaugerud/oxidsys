@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1841;
+pub const OP_CODE: u32 = 1841;
 
 pub const IDENT: &str = "prop_instance_get_variation_id_2";
 
 impl Operation for PropInstanceGetVariationId2Op {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

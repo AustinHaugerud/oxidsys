@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1950;
+pub const OP_CODE: u32 = 1950;
 
 pub const IDENT: &str = "set_current_color";
 
 impl Operation for SetCurrentColorOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

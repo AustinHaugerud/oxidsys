@@ -1,3 +1,4 @@
+use language::operations::Operation;
 pub mod call_script;
 pub mod else_try;
 pub mod try_begin;
@@ -9,11 +10,8 @@ pub mod try_for_prop_instances;
 pub mod try_for_range;
 pub mod try_for_range_backwards;
 
-use language::operations::Operation;
-
 pub fn load_operands() -> Vec<Box<Operation>> {
     let mut result: Vec<Box<Operation>> = vec![];
-
     result.push(Box::new(call_script::CallScriptOp {}));
     result.push(Box::new(else_try::ElseTryOp {}));
     result.push(Box::new(try_begin::TryBeginOp {}));
@@ -24,6 +22,5 @@ pub fn load_operands() -> Vec<Box<Operation>> {
     result.push(Box::new(try_for_prop_instances::TryForPropInstancesOp {}));
     result.push(Box::new(try_for_range::TryForRangeOp {}));
     result.push(Box::new(try_for_range_backwards::TryForRangeBackwardsOp {}));
-
     result
 }

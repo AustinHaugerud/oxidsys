@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2355;
+pub const OP_CODE: u32 = 2355;
 
 pub const IDENT: &str = "str_encode_url";
 
 impl Operation for StrEncodeUrlOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

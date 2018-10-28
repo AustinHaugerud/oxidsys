@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 2403;
+pub const OP_CODE: u32 = 2403;
 
 pub const IDENT: &str = "set_shader_param_float4x4";
 
 impl Operation for SetShaderParamFloat4x4Op {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

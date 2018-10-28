@@ -3,16 +3,16 @@ use language::operations::Operation;
 pub struct TryForRangeOp;
 
 const DOC: &str = r#"
-Iterate over range [a,b).
-Format: try_for_range <iterator> <inclusive_beg> <exclusive_end>;
+Please write me!
+Format: Please write me!
 "#;
 
-const OP_CODE: u16 = 6;
+pub const OP_CODE: u32 = 6;
 
-const IDENT: &str = "try_for_range";
+pub const IDENT: &str = "try_for_range";
 
 impl Operation for TryForRangeOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

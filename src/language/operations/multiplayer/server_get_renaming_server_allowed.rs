@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 475;
+pub const OP_CODE: u32 = 475;
 
 pub const IDENT: &str = "server_get_renaming_server_allowed";
 
 impl Operation for ServerGetRenamingServerAllowedOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 

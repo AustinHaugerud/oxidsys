@@ -7,12 +7,12 @@ Please write me!
 Format: Please write me!
 "#;
 
-pub const OP_CODE: u16 = 1982;
+pub const OP_CODE: u32 = 1982;
 
 pub const IDENT: &str = "cur_scene_prop_set_tableau_material";
 
 impl Operation for CurScenePropSetTableauMaterialOp {
-    fn op_code(&self) -> u16 {
+    fn op_code(&self) -> u32 {
         OP_CODE
     }
 
