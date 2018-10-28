@@ -1,4 +1,3 @@
-
 named!(extract_script_name<&str, &str>, take_until!("("));
 named!(extract_script_params_section<&str, &str>, take_until!("{"));
 named!(extract_script_block<&str, &str>, take_until!("}"));

@@ -33,6 +33,10 @@ fn main() {
                         .help("Operation to print documentation for")
                         .required(true),
                 ),
+        ).subcommand(
+            SubCommand::with_name("new")
+                .about("Create new module")
+                .arg(Arg::with_name("name").required(true)),
         ).get_matches();
 
     if let Some(documentation_matches) = matches.subcommand_matches("documentation") {
@@ -40,5 +44,14 @@ fn main() {
             .value_of("operation")
             .expect("Bug: No operation identifier when expected.");
         println!("{}", doc_service.request_documentation(op_ident));
+    }
+
+    if let Some(new_mod_matches) = matches.subcommand_matches("new") {
+        let name = new_mod_matches
+            .value_of("name")
+            .expect("Bug: No name given when expected.");
+        if module_creation::blank_module::init_blank_module(name).is_err() {
+            println!("Failed to create new module.");
+        }
     }
 }
