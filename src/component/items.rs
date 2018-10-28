@@ -218,3 +218,16 @@ const IBF_DAMAGE_MASK: IbfVal = 0x00000000000000000000003ff;
 const IBF_10BIT_MASK: IbfVal = 0x00000000000000000000003ff;
 
 pub struct IBF(IbfVal);
+
+pub struct Item {
+    item_id: String,
+    item_name: String,
+    meshes: Vec<(String, u32)>,
+    flags: u128,
+    capabilities: u128,
+    value: u32,
+    stats: u128,
+    modifier_bits: u128,
+    // Triggers ?
+    // Factions ?
+}

@@ -3,8 +3,8 @@ use language::operations::Operation;
 pub struct CallScriptOp;
 
 const DOC: &str = r#"
-Calls specified script with or without parameters.
-Format: call_script <script_id>, [<script_parma>...];
+Calls specified script with or without parameters
+Format: call_script <script_id>, [<script_params>...];
 "#;
 
 pub const OP_CODE: u16 = 1;

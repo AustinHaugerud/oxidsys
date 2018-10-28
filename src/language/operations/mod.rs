@@ -77,7 +77,6 @@ pub mod world;
 # cmpxchg8b, Caba'drin, SonKidd, MadVader, dunde, Ikaguia, MadocComadrin,
 # Cjkjvfnby, shokkueibu.
 */
-
 use std::collections::HashMap;
 
 pub trait Operation {
@@ -119,7 +118,7 @@ fn load_operands_list() -> Vec<Box<Operation>> {
 
 pub fn load_operands_map() -> HashMap<&'static str, Box<Operation>> {
     let list = load_operands_list();
-    let mut map : HashMap<&str, Box<Operation>> = HashMap::new();
+    let mut map: HashMap<&str, Box<Operation>> = HashMap::new();
 
     for op in list {
         map.insert(op.identifier(), op);

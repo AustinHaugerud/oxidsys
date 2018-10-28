@@ -7,7 +7,7 @@ Opens a conditional block.
 Format: try_begin;
 "#;
 
-pub const OP_CODE : u16 = 4;
+pub const OP_CODE: u16 = 4;
 
 pub const IDENT: &str = "try_begin";
 
