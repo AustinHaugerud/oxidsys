@@ -1,14 +1,13 @@
-
-const GLOBAL_PREFIX : &str = "$";
-const LOCAL_PREFIX : &str = ":";
+const GLOBAL_PREFIX: &str = "$";
+const LOCAL_PREFIX: &str = ":";
 
 named!(get_scope_char<&str, &str>, alt!(tag!(GLOBAL_PREFIX) | tag!(LOCAL_PREFIX)));
 
 #[cfg(test)]
 mod tests {
+    use super::get_scope_char;
     use super::GLOBAL_PREFIX;
     use super::LOCAL_PREFIX;
-    use super::get_scope_char;
 
     #[test]
     fn test_get_scope_char_gets_global() {

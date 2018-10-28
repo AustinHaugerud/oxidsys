@@ -2,12 +2,14 @@ use language::operations::Operation;
 
 pub struct CallScriptOp;
 
-const DOC : &str = r#"
+const DOC: &str = r#"
 Calls specified script with or without parameters.
 Format: call_script <script_id>, [<script_parma>...];
 "#;
 
-pub const OP_CODE : u16 = 1;
+pub const OP_CODE: u16 = 1;
+
+pub const IDENT: &str = "call_script";
 
 impl Operation for CallScriptOp {
     fn op_code(&self) -> u16 {
@@ -16,5 +18,9 @@ impl Operation for CallScriptOp {
 
     fn documentation(&self) -> &str {
         DOC
+    }
+
+    fn identifier(&self) -> &str {
+        IDENT
     }
 }

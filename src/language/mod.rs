@@ -4,4 +4,4 @@ mod script;
 mod statement;
 mod variable;
 
-const VALID_SET : &str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTTUVWXYZ_123456789";
+const VALID_SET: &str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTTUVWXYZ_123456789";

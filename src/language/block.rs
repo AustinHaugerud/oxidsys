@@ -1,6 +1,5 @@
-
-fn extract_block_contents(input : &str) -> &str {
-    &input[1..input.len()-1]
+fn extract_block_contents(input: &str) -> &str {
+    &input[1..input.len() - 1]
 }
 
 #[cfg(test)]
