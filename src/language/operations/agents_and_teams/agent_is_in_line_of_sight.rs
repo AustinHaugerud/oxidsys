@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct AgentIsInLineOfSightOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Version 1.153+. Checks that the agent can be seen from specified position. Rotation of position register is not used (i.e. agent will be seen even if position is \"looking\" the other way).";
 
 pub const OP_CODE: u32 = 1826;
 
@@ -22,5 +19,16 @@ impl Operation for AgentIsInLineOfSightOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<agent_id>", ""),
+                make_param_doc("<position_no>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct SetJumpEntryOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Defines what entry point the player will appear at when the mission starts.";
 
 pub const OP_CODE: u32 = 1912;
 
@@ -22,5 +19,13 @@ impl Operation for SetJumpEntryOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<entry_no>", "")],
+        }
     }
 }

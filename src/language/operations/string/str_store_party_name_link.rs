@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StrStorePartyNameLinkOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Stores party name as an internal game link. Resulting string can be used in game notes, will be highlighted, and clicking on it will redirect the player to the details page of the referenced party.";
 
 pub const OP_CODE: u32 = 2342;
 
@@ -22,5 +19,16 @@ impl Operation for StrStorePartyNameLinkOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<string_register>", ""),
+                make_param_doc("<party_id>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct CompleteQuestOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Successfully completes specified quest, removing it from the list of active quests.";
 
 pub const OP_CODE: u32 = 1281;
 
@@ -22,5 +20,13 @@ impl Operation for CompleteQuestOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<quest_id>", "")],
+        }
     }
 }

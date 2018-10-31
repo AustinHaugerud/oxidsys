@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod auto_save;
 pub mod get_achievement_stat;
 pub mod get_average_game_difficulty;

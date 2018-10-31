@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PlayerSetIsAdminOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Server operation. Set the current player as admin (value = 1) or not (value = 0).";
 
 pub const OP_CODE: u32 = 429;
 
@@ -22,5 +20,16 @@ impl Operation for PlayerSetIsAdminOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<player_id>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

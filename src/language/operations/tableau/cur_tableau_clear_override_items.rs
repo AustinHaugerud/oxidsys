@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct CurTableauClearOverrideItemsOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Removes and previously defined equipment overrides for the troop, allowing to start from scratch.";
 
 pub const OP_CODE: u32 = 1998;
 
@@ -22,5 +19,13 @@ impl Operation for CurTableauClearOverrideItemsOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 0,
+            num_optional: 0,
+            param_docs: vec![],
+        }
     }
 }

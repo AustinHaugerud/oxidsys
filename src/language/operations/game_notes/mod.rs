@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod add_faction_note_from_dialog;
 pub mod add_faction_note_from_sreg;
 pub mod add_faction_note_tableau_mesh;

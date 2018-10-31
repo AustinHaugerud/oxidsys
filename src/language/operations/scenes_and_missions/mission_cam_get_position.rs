@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct MissionCamGetPositionOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Retrieves the current position of camera during the mission (i.e. the point from which the player is observing the game).";
 
 pub const OP_CODE: u32 = 2010;
 
@@ -22,5 +19,13 @@ impl Operation for MissionCamGetPositionOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<position_register_no>", "")],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StoreScriptParam1Op;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Retrieve the value of the first script parameter.";
 
 pub const OP_CODE: u32 = 21;
 
@@ -22,5 +19,13 @@ impl Operation for StoreScriptParam1Op {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<destination>", "")],
+        }
     }
 }

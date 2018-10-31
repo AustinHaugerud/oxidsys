@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TeamSetOrderPositionOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Defines the position for specified team/division when currently issued order requires one.";
 
 pub const OP_CODE: u32 = 1791;
 
@@ -22,5 +20,17 @@ impl Operation for TeamSetOrderPositionOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<team_no>", ""),
+                make_param_doc("<division>", ""),
+                make_param_doc("<position>", ""),
+            ],
+        }
     }
 }

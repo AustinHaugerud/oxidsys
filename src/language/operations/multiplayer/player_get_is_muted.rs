@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PlayerGetIsMutedOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "";
 
 pub const OP_CODE: u32 = 439;
 
@@ -22,5 +19,16 @@ impl Operation for PlayerGetIsMutedOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<player_id>", ""),
+            ],
+        }
     }
 }

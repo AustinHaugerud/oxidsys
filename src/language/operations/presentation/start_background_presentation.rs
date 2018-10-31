@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StartBackgroundPresentationOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Apparently allows you to start a presentation in background but stay in the menu. 4research.";
 
 pub const OP_CODE: u32 = 901;
 
@@ -22,5 +20,13 @@ impl Operation for StartBackgroundPresentationOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<presentation_id>", "")],
+        }
     }
 }

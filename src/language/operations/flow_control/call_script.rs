@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct CallScriptOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Calls specified script with or without parameters.";
 
 pub const OP_CODE: u32 = 1;
 
@@ -22,5 +19,17 @@ impl Operation for CallScriptOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 20,
+            param_docs: vec![
+                make_param_doc("<script_id>", ""),
+                make_param_doc("<script_param>", ""),
+                make_param_doc("[<script_param>...]", ""),
+            ],
+        }
     }
 }

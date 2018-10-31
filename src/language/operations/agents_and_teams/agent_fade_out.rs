@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct AgentFadeOutOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Fades out the agent from the scene (same effect as fleeing enemies when they get to the edge of map).";
 
 pub const OP_CODE: u32 = 1749;
 
@@ -22,5 +19,13 @@ impl Operation for AgentFadeOutOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<agent_id>", "")],
+        }
     }
 }

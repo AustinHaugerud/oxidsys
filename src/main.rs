@@ -1,10 +1,14 @@
 #![allow(dead_code)] // Temporary - We expect a lot of dead code for now, when completion is closer
                      // turn dead code warnings back on.
 
+#[macro_use]
+extern crate serde_json;
+
 extern crate clap;
 
+extern crate pest;
 #[macro_use]
-extern crate nom;
+extern crate pest_derive;
 
 mod compiler;
 mod component;

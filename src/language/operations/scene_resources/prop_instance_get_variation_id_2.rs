@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PropInstanceGetVariationId2Op;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Retrieves the second variation ID number for the specified scene prop instance.";
 
 pub const OP_CODE: u32 = 1841;
 
@@ -22,5 +19,16 @@ impl Operation for PropInstanceGetVariationId2Op {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<scene_prop_id>", ""),
+            ],
+        }
     }
 }

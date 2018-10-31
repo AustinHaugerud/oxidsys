@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartyAddMembersOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Returns total number of added troops in reg0.";
 
 pub const OP_CODE: u32 = 1610;
 
@@ -22,5 +19,17 @@ impl Operation for PartyAddMembersOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<party_id>", ""),
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<number>", ""),
+            ],
+        }
     }
 }

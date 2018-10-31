@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct AddXpAsRewardOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Adds the specified amount of xp points to player. Typically used as a quest reward operation.";
 
 pub const OP_CODE: u32 = 1064;
 
@@ -22,5 +20,13 @@ impl Operation for AddXpAsRewardOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<value>", "")],
+        }
     }
 }

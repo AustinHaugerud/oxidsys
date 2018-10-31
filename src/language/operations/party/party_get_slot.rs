@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartyGetSlotOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "party_slot_eq                         =  541   (party_slot_eq, <party_id>, <slot_no>, <value>),";
 
 pub const OP_CODE: u32 = 521;
 
@@ -22,5 +19,17 @@ impl Operation for PartyGetSlotOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<party_id>", ""),
+                make_param_doc("<slot_no>", ""),
+            ],
+        }
     }
 }

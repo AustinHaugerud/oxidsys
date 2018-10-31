@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct SetSpawnRadiusOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Sets radius for party spawning with subsequent <spawn_around_party> operations.";
 
 pub const OP_CODE: u32 = 1103;
 
@@ -22,5 +19,13 @@ impl Operation for SetSpawnRadiusOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<value>", "")],
+        }
     }
 }

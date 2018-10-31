@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TutorialMessageOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Displays a popup window with tutorial text stored in referenced string or string register. Use -1 to close any currently open tutorial box. Optional parameters allow you to define text color and time period after which the tutorial box will close automatically.";
 
 pub const OP_CODE: u32 = 1122;
 
@@ -22,5 +19,17 @@ impl Operation for TutorialMessageOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 2,
+            param_docs: vec![
+                make_param_doc("<string_id>", ""),
+                make_param_doc("[color]", ""),
+                make_param_doc("[auto_close_time]","")
+            ],
+        }
     }
 }

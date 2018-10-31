@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod get_global_cloud_amount;
 pub mod get_global_haze_amount;
 pub mod is_currently_night;

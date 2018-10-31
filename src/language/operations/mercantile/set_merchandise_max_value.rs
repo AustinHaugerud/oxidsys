@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct SetMerchandiseMaxValueOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Not used in Native. Apparently prevents items with price higher than listed from being generated as merchandise.";
 
 pub const OP_CODE: u32 = 1491;
 
@@ -22,5 +19,13 @@ impl Operation for SetMerchandiseMaxValueOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<value>", "")],
+        }
     }
 }

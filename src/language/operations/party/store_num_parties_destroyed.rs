@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StoreNumPartiesDestroyedOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Stores the total number of destroyed parties of specified type.";
 
 pub const OP_CODE: u32 = 2301;
 
@@ -22,5 +19,16 @@ impl Operation for StoreNumPartiesDestroyedOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<party_template_id>", ""),
+            ],
+        }
     }
 }

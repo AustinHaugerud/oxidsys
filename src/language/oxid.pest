@@ -1,0 +1,25 @@
+identifier = { 'a'..'z' ~ ( 'a'..'z' | "_" | ASCII_DIGIT)* }
+
+dec_literal = { ASCII_DIGIT+ }
+hex_literal = { "0x" ~ (ASCII_DIGIT | 'A'..'F' | 'a'..'f' )+ }
+bin_literal = { "0b" ~ ('0'..'1')+ }
+numeric_literal = { dec_literal | hex_literal | bin_literal }
+string_literal = { "'" ~ (ASCII_ALPHANUMERIC | " ")* ~ "'" }
+
+EOL = { "\n" | "\r" }
+PAD = { EOL | " " }
+
+operand_call = { PAD* ~ identifier ~ (identifier | numeric_literal | " ")* ~ ";" ~ PAD* }
+
+variable_scope_keyword = { "local" | "global" }
+variable_declaration = { PAD* ~ variable_scope_keyword ~ identifier ~ ";" ~ PAD* }
+
+param_declaration = { PAD* ~ "param" ~ PAD* ~ identifier ~ ";" ~ PAD* }
+
+statement = { operand_call | variable_declaration | param_declaration }
+
+file = {
+    SOI ~
+    statement* ~
+    EOI
+}

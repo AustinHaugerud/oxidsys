@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct IsBetweenOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Checks that lower_bound <= value < upper_bound";
 
 pub const OP_CODE: u32 = 33;
 
@@ -22,5 +19,17 @@ impl Operation for IsBetweenOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<value>", ""),
+                make_param_doc("<lower_bound>", ""),
+                make_param_doc("<upper_bound>", ""),
+            ],
+        }
     }
 }

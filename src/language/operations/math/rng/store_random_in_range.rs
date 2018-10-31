@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StoreRandomInRangeOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Stores a random value in the range of <range_low>..<range_high>-1.";
 
 pub const OP_CODE: u32 = 2136;
 
@@ -22,5 +19,17 @@ impl Operation for StoreRandomInRangeOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<range_low>", ""),
+                make_param_doc("<range_high>", ""),
+            ],
+        }
     }
 }

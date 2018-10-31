@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct DisplayLogMessageOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Display a string message using provided color (hex-coded 0xRRGGBB). The message will also be written to game log (accessible through Notes / Game Log), and will persist between sessions (i.e. it will be stored as part of the savegame).";
 
 pub const OP_CODE: u32 = 1105;
 
@@ -22,5 +19,16 @@ impl Operation for DisplayLogMessageOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 1,
+            param_docs: vec![
+                make_param_doc("<string_id>", ""),
+                make_param_doc("[hex_colour_code]", ""),
+            ],
+        }
     }
 }

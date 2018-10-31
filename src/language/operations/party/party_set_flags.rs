@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartySetFlagsOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Sets (1) or clears (0) party flags in runtime. See header_parties.py for flags reference.";
 
 pub const OP_CODE: u32 = 1603;
 
@@ -22,5 +20,17 @@ impl Operation for PartySetFlagsOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<party_id>", ""),
+                make_param_doc("<flag>", ""),
+                make_param_doc("<clear_or_set>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartyPrisonerStackGetTroopIdOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Extracts troop type of the specified prisoner stack.";
 
 pub const OP_CODE: u32 = 1656;
 
@@ -22,5 +19,17 @@ impl Operation for PartyPrisonerStackGetTroopIdOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<party_id>", ""),
+                make_param_doc("<stack_no>", ""),
+            ],
+        }
     }
 }

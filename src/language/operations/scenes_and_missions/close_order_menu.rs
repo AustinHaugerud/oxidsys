@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct CloseOrderMenuOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Version 1.161+. If orders menu is currently open, it will be closed.";
 
 pub const OP_CODE: u32 = 1789;
 
@@ -22,5 +19,13 @@ impl Operation for CloseOrderMenuOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 0,
+            num_optional: 0,
+            param_docs: vec![],
+        }
     }
 }

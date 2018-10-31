@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct SetPostfxOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "This operation is not documented nor any examples of it's use could be found. Parameters are unknown.";
 
 pub const OP_CODE: u32 = 2386;
 
@@ -22,5 +19,13 @@ impl Operation for SetPostfxOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 0,
+            num_optional: 0,
+            param_docs: vec![],
+        }
     }
 }

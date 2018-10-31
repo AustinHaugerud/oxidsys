@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct GameInMultiplayerModeOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Checks that the game is running in multiplayer mode.";
 
 pub const OP_CODE: u32 = 419;
 
@@ -22,5 +19,13 @@ impl Operation for GameInMultiplayerModeOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 0,
+            num_optional: 0,
+            param_docs: vec![],
+        }
     }
 }

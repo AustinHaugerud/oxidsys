@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartyAttachToPartyOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Attach a party to another one (like lord's army staying in a town/castle).";
 
 pub const OP_CODE: u32 = 1660;
 
@@ -22,5 +19,16 @@ impl Operation for PartyAttachToPartyOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<party_id>", ""),
+                make_param_doc("<party_id_to_attach_to>", ""),
+            ],
+        }
     }
 }

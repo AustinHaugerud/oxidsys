@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct RemoveTroopsFromCompanionsOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Removes troops from player's party, duplicating functionality of (party_remove_members) but providing less flexibility.";
 
 pub const OP_CODE: u32 = 1215;
 
@@ -22,5 +19,16 @@ impl Operation for RemoveTroopsFromCompanionsOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod change_screen_buy_mercenaries;
 pub mod change_screen_controls;
 pub mod change_screen_equip_other;

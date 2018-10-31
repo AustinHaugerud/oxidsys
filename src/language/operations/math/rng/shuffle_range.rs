@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct ShuffleRangeOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Randomly shuffles a range of registers, reordering the values contained in them. Commonly used for list randomization.";
 
 pub const OP_CODE: u32 = 2134;
 
@@ -22,5 +19,16 @@ impl Operation for ShuffleRangeOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<reg_no>", ""),
+                make_param_doc("<reg_no>", ""),
+            ],
+        }
     }
 }

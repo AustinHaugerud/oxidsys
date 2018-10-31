@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StoreFactionOfPartyOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Retrieves current faction allegiance of the party.";
 
 pub const OP_CODE: u32 = 2204;
 
@@ -22,5 +19,16 @@ impl Operation for StoreFactionOfPartyOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<party_id>", ""),
+            ],
+        }
     }
 }

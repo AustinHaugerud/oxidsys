@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct CurTableauRenderAsAlphaMaskOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Tells the engine to treat the tableau as an alpha (transparency) mask.";
 
 pub const OP_CODE: u32 = 1984;
 
@@ -22,5 +19,13 @@ impl Operation for CurTableauRenderAsAlphaMaskOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 0,
+            num_optional: 0,
+            param_docs: vec![],
+        }
     }
 }

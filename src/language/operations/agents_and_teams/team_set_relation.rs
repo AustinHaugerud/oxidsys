@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TeamSetRelationOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Sets relations between two teams. Possible values: enemy (-1), neutral (0) and friendly (1).";
 
 pub const OP_CODE: u32 = 1796;
 
@@ -22,5 +20,17 @@ impl Operation for TeamSetRelationOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<team_no>", ""),
+                make_param_doc("<team_no_2>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

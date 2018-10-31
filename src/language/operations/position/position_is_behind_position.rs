@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PositionIsBehindPositionOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Checks if the second position is behind the first.";
 
 pub const OP_CODE: u32 = 714;
 
@@ -22,5 +19,16 @@ impl Operation for PositionIsBehindPositionOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<position_base>", ""),
+                make_param_doc("<position_to_check>", ""),
+            ],
+        }
     }
 }

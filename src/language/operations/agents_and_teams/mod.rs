@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod add_missile;
 pub mod add_reinforcements_to_entry;
 pub mod agent_add_offer_with_timeout;

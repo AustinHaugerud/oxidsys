@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct SpawnAgentOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Spawns a new troop in the specified position and saves the reference to the new agent in reg0.";
 
 pub const OP_CODE: u32 = 1972;
 
@@ -22,5 +19,13 @@ impl Operation for SpawnAgentOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<troop_id>", "")],
+        }
     }
 }

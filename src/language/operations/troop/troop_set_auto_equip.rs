@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TroopSetAutoEquipOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Sets (value = 1) or disables (value = 0) auto-equipping the troop with any items added to it's inventory or purchased. Similar to tf_is_merchant flag.";
 
 pub const OP_CODE: u32 = 1509;
 
@@ -22,5 +19,16 @@ impl Operation for TroopSetAutoEquipOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

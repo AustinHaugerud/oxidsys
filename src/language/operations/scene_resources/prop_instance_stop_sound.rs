@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PropInstanceStopSoundOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Version 1.153+. Stops any sound currently played by the scene prop instance.";
 
 pub const OP_CODE: u32 = 1882;
 
@@ -22,5 +19,13 @@ impl Operation for PropInstanceStopSoundOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<scene_prop_id>", "")],
+        }
     }
 }

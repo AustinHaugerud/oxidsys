@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StorePartySizeWoPrisonersOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Stores total number of members in the party (without prisoners), duplicating (party_get_num_companions).";
 
 pub const OP_CODE: u32 = 2157;
 
@@ -22,5 +19,16 @@ impl Operation for StorePartySizeWoPrisonersOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 1,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("[party_id]", ""),
+            ],
+        }
     }
 }

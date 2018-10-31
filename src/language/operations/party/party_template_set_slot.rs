@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartyTemplateSetSlotOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "party_template_get_slot               =  524   (party_template_get_slot, <destination>, <party_template_id>, <slot_no>),";
 
 pub const OP_CODE: u32 = 504;
 
@@ -22,5 +19,17 @@ impl Operation for PartyTemplateSetSlotOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<party_template_id>", ""),
+                make_param_doc("<slot_no>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

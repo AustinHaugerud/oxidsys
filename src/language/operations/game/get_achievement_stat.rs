@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct GetAchievementStatOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Retrieves the numeric value associated with an achievement. Used to keep track of player's results before finally unlocking it.";
 
 pub const OP_CODE: u32 = 370;
 
@@ -22,5 +19,17 @@ impl Operation for GetAchievementStatOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<achievement_id>", ""),
+                make_param_doc("<stat_index>", ""),
+            ],
+        }
     }
 }

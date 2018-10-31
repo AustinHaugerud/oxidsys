@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct SetupQuestGiverOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Apparently deprecated, as quest giver troop is now defined as a parameter of (start_quest).";
 
 pub const OP_CODE: u32 = 1291;
 
@@ -22,5 +20,16 @@ impl Operation for SetupQuestGiverOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<quest_id>", ""),
+                make_param_doc("<string_id>", ""),
+            ],
+        }
     }
 }

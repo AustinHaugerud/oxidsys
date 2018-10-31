@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct MissionSetDuelModeOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Sets duel mode for the multiplayer mission. Values: 0 = off, 1 = on.";
 
 pub const OP_CODE: u32 = 2006;
 
@@ -22,5 +19,13 @@ impl Operation for MissionSetDuelModeOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<value>", "")],
+        }
     }
 }

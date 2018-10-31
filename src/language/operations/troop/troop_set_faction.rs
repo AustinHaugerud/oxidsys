@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TroopSetFactionOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Sets a new faction for the troop (mostly used to switch lords allegiances in Native).";
 
 pub const OP_CODE: u32 = 1550;
 
@@ -22,5 +20,16 @@ impl Operation for TroopSetFactionOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<faction_id>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TroopAddGoldOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Adds gold to troop. Generally used with player or hero troops.";
 
 pub const OP_CODE: u32 = 1528;
 
@@ -22,5 +19,16 @@ impl Operation for TroopAddGoldOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct KeyClickedOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Checks that the specified key has just been pressed. See header_triggers.py for key code reference.";
 
 pub const OP_CODE: u32 = 71;
 
@@ -22,5 +19,13 @@ impl Operation for KeyClickedOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<key_code>", "")],
+        }
     }
 }

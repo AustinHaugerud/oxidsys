@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct ModifyVisitorsAtSiteOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Declares the scene which visitors will be modified from that moment on.";
 
 pub const OP_CODE: u32 = 1261;
 
@@ -22,5 +19,13 @@ impl Operation for ModifyVisitorsAtSiteOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<scene_id>", "")],
+        }
     }
 }

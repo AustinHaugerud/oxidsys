@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PropInstanceGetCurrentDeformProgressOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Version 1.161+. Returns a percentage value between 0 and 100 if animation is still in progress. Returns 100 otherwise.";
 
 pub const OP_CODE: u32 = 2615;
 
@@ -22,5 +19,16 @@ impl Operation for PropInstanceGetCurrentDeformProgressOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<prop_instance_no>", ""),
+            ],
+        }
     }
 }

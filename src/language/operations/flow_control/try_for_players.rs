@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TryForPlayersOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Version 1.165+. Iterates through all players in a multiplayer game. Set optional parameter to 1 to skip server player entry.";
 
 pub const OP_CODE: u32 = 17;
 
@@ -22,5 +19,16 @@ impl Operation for TryForPlayersOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 1,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("[skip_server]", ""),
+            ],
+        }
     }
 }

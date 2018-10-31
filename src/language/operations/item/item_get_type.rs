@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct ItemGetTypeOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Returns item class (see header_items.py for itp_type_* constants).";
 
 pub const OP_CODE: u32 = 1570;
 
@@ -22,5 +19,16 @@ impl Operation for ItemGetTypeOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<item_id>", ""),
+            ],
+        }
     }
 }

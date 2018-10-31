@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct OptionsGetDamageToPlayerOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "0 = 1/4, 1 = 1/2, 2 = 1/1";
 
 pub const OP_CODE: u32 = 260;
 
@@ -22,5 +19,13 @@ impl Operation for OptionsGetDamageToPlayerOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<destination>", "")],
+        }
     }
 }

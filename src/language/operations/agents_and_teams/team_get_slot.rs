@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TeamGetSlotOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "team_slot_eq                             =  549   (team_slot_eq, <team_id>, <slot_no>, <value>),";
 
 pub const OP_CODE: u32 = 529;
 
@@ -22,5 +19,17 @@ impl Operation for TeamGetSlotOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<player_id>", ""),
+                make_param_doc("<slot_no>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct AgentSetSpeedLimitOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Limits agent speed by the specified value in kph. Use 5 for average walking speed. Affects only AI agents.";
 
 pub const OP_CODE: u32 = 1736;
 
@@ -22,5 +19,13 @@ impl Operation for AgentSetSpeedLimitOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<agent_id>", "")],
+        }
     }
 }

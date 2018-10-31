@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TutorialMessageSetBackgroundOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Defines whether the tutorial box will have a background or not (1 or 0). Default is off.";
 
 pub const OP_CODE: u32 = 1126;
 
@@ -22,5 +20,13 @@ impl Operation for TutorialMessageSetBackgroundOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<value>", "")],
+        }
     }
 }

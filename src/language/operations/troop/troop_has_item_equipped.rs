@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TroopHasItemEquippedOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Checks that the troop has this item equipped (worn or wielded).";
 
 pub const OP_CODE: u32 = 151;
 
@@ -22,5 +19,16 @@ impl Operation for TroopHasItemEquippedOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<item_id>", ""),
+            ],
+        }
     }
 }

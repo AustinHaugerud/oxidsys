@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct AddCompanionPartyOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Creates a new empty party with specified hero as party leader and the only member. Party is spawned at the position of player's party.";
 
 pub const OP_CODE: u32 = 1233;
 
@@ -22,5 +19,13 @@ impl Operation for AddCompanionPartyOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<troop_id_hero>", "")],
+        }
     }
 }

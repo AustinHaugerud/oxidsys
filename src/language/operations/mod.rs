@@ -79,10 +79,39 @@ pub mod world;
 */
 use std::collections::HashMap;
 
+pub struct ParamInfo {
+    num_required: u8,
+    num_optional: u8,
+    param_docs: Vec<(String, String)>,
+}
+
+impl ParamInfo {
+    pub fn num_required(&self) -> u8 {
+        self.num_required
+    }
+
+    pub fn num_optional(&self) -> u8 {
+        self.num_optional
+    }
+
+    pub fn num_max(&self) -> u8 {
+        self.num_required + self.num_optional
+    }
+
+    pub fn get_param_docs(&self) -> &Vec<(String, String)> {
+        &self.param_docs
+    }
+}
+
+fn make_param_doc(name: &str, doc: &str) -> (String, String) {
+    (name.to_string(), doc.to_string())
+}
+
 pub trait Operation {
     fn op_code(&self) -> u32;
     fn documentation(&self) -> &'static str;
     fn identifier(&self) -> &'static str;
+    fn param_info(&self) -> ParamInfo;
 }
 
 fn load_operands_list() -> Vec<Box<Operation>> {

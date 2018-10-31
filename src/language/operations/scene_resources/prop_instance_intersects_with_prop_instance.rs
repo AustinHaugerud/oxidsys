@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PropInstanceIntersectsWithPropInstanceOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Checks if two scene props are intersecting (i.e. collided). Useful when animating scene props movement. Pass -1 for second parameter to check the prop against all other props on the scene.";
 
 pub const OP_CODE: u32 = 1880;
 
@@ -22,5 +19,16 @@ impl Operation for PropInstanceIntersectsWithPropInstanceOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<checked_scene_prop_id>", ""),
+                make_param_doc("<scene_prop_id>", ""),
+            ],
+        }
     }
 }

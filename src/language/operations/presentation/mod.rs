@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod close_item_details;
 pub mod create_button_overlay;
 pub mod create_check_box_overlay;

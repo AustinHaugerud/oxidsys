@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StrStoreInfoPageNameOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Stores info page title (as defined in module_info_pages.py) in referenced string register.";
 
 pub const OP_CODE: u32 = 2337;
 
@@ -22,5 +20,16 @@ impl Operation for StrStoreInfoPageNameOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<string_register>", ""),
+                make_param_doc("<info_page_id>", ""),
+            ],
+        }
     }
 }

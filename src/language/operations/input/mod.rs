@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod clear_omitted_keys;
 pub mod game_key_clicked;
 pub mod game_key_is_down;

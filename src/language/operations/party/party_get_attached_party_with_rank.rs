@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PartyGetAttachedPartyWithRankOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Extract party_id of a specified party among attached.";
 
 pub const OP_CODE: u32 = 1696;
 
@@ -22,5 +19,17 @@ impl Operation for PartyGetAttachedPartyWithRankOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<party_id>", ""),
+                make_param_doc("<attached_party_index>", ""),
+            ],
+        }
     }
 }

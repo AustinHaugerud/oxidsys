@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TroopGetInventorySlotOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Retrieves the item_id of a specified equipment or inventory slot. Returns -1 when there's nothing there.";
 
 pub const OP_CODE: u32 = 1541;
 
@@ -22,5 +19,17 @@ impl Operation for TroopGetInventorySlotOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<inventory_slot_no>", ""),
+            ],
+        }
     }
 }

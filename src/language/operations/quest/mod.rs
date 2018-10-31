@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod cancel_quest;
 pub mod check_quest_active;
 pub mod check_quest_concluded;

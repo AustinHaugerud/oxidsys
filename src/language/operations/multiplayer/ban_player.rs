@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct BanPlayerOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Official docs: set value = 1 for banning temporarily, assign 2nd player id as the administrator player id if banning is permanent";
 
 pub const OP_CODE: u32 = 466;
 
@@ -22,5 +19,17 @@ impl Operation for BanPlayerOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<player_id>", ""),
+                make_param_doc("<value>", ""),
+                make_param_doc("<player_id>", ""),
+            ],
+        }
     }
 }

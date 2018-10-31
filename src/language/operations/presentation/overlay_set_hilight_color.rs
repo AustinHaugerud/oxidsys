@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct OverlaySetHilightColorOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Highlights the overlay with specified color. May not work with some overlay types.";
 
 pub const OP_CODE: u32 = 923;
 
@@ -22,5 +20,16 @@ impl Operation for OverlaySetHilightColorOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<overlay_id>", ""),
+                make_param_doc("<color>", ""),
+            ],
+        }
     }
 }

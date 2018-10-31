@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod add_gold_as_xp;
 pub mod add_xp_as_reward;
 pub mod add_xp_to_troop;

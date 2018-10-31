@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TeamGetHoldFireOrderOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Retrieves current status of hold fire order for specified team/division (see aordr_* constants in header_mission_templates.py for reference).";
 
 pub const OP_CODE: u32 = 1784;
 
@@ -22,5 +19,17 @@ impl Operation for TeamGetHoldFireOrderOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<team_no>", ""),
+                make_param_doc("<division>", ""),
+            ],
+        }
     }
 }

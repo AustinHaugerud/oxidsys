@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct PositionGetRotationAroundYOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Returns angle (in degrees) that the position is rotated around Y axis (tilt right/left).";
 
 pub const OP_CODE: u32 = 743;
 
@@ -22,5 +20,16 @@ impl Operation for PositionGetRotationAroundYOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<position>", ""),
+            ],
+        }
     }
 }

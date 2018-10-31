@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct CurTableauAddOverrideItemOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "When creating a troop image for current tableau, the operation will add a new item to troop's equipment.";
 
 pub const OP_CODE: u32 = 1999;
 
@@ -22,5 +19,13 @@ impl Operation for CurTableauAddOverrideItemOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<item_kind_id>", "")],
+        }
     }
 }

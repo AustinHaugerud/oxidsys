@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct AgentAiSetCanCrouchOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str = "Version 1.153+. Allows or forbids the agent to crouch. 0 to forbid, 1 to allow.";
 
 pub const OP_CODE: u32 = 2083;
 
@@ -22,5 +19,16 @@ impl Operation for AgentAiSetCanCrouchOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 2,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<agent_id>", ""),
+                make_param_doc("<value>", ""),
+            ],
+        }
     }
 }

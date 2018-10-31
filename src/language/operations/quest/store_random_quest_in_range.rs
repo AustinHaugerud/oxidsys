@@ -1,11 +1,9 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StoreRandomQuestInRangeOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC: &str =
+    "Apparently deprecated as the logic for picking a new quest has been moved to module_scripts.";
 
 pub const OP_CODE: u32 = 2250;
 
@@ -22,5 +20,17 @@ impl Operation for StoreRandomQuestInRangeOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<destination>", ""),
+                make_param_doc("<lower_bound>", ""),
+                make_param_doc("<upper_bound>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct TroopRemoveItemsOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Removes multiple items of specified type from the troop. Total price of actually removed items will be stored in reg0.";
 
 pub const OP_CODE: u32 = 1536;
 
@@ -22,5 +19,17 @@ impl Operation for TroopRemoveItemsOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 3,
+            num_optional: 0,
+            param_docs: vec![
+                make_param_doc("<troop_id>", ""),
+                make_param_doc("<item_id>", ""),
+                make_param_doc("<number>", ""),
+            ],
+        }
     }
 }

@@ -1,11 +1,8 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 
 pub struct StrStoreServerNameOp;
 
-const DOC: &str = r#"
-Please write me!
-Format: Please write me!
-"#;
+const DOC : &str = "Stores server's name (as displayed to clients in server's list window) in referenced string register.";
 
 pub const OP_CODE: u32 = 2352;
 
@@ -22,5 +19,13 @@ impl Operation for StrStoreServerNameOp {
 
     fn identifier(&self) -> &'static str {
         IDENT
+    }
+
+    fn param_info(&self) -> ParamInfo {
+        ParamInfo {
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<string_register>", "")],
+        }
     }
 }

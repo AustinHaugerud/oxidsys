@@ -1,4 +1,4 @@
-use language::operations::Operation;
+use language::operations::{make_param_doc, Operation, ParamInfo};
 pub mod game_key_get_mapped_key_name;
 pub mod net;
 pub mod str_clear;
