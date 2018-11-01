@@ -31,7 +31,7 @@ impl Operation for CurItemSetMaterialOp {
                 make_param_doc("<lod_begin>", ""),
                 make_param_doc("<lod_end>", ""),
                 make_param_doc("[<lod_begin>]", ""),
-                make_param_doc("[<lod_end>]", "")
+                make_param_doc("[<lod_end>]", ""),
             ],
         }
     }

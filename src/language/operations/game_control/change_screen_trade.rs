@@ -25,7 +25,10 @@ impl Operation for ChangeScreenTradeOp {
         ParamInfo {
             num_required: 0,
             num_optional: 1,
-            param_docs: vec![make_param_doc("[troop_id]", "Optional if called from dialog.")],
+            param_docs: vec![make_param_doc(
+                "[troop_id]",
+                "Optional if called from dialog.",
+            )],
         }
     }
 }

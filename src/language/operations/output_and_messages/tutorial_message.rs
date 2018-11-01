@@ -28,7 +28,7 @@ impl Operation for TutorialMessageOp {
             param_docs: vec![
                 make_param_doc("<string_id>", ""),
                 make_param_doc("[color]", ""),
-                make_param_doc("[auto_close_time]","")
+                make_param_doc("[auto_close_time]", ""),
             ],
         }
     }

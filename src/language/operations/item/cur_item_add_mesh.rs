@@ -28,7 +28,7 @@ impl Operation for CurItemAddMeshOp {
             param_docs: vec![
                 make_param_doc("<mesh_name_string>", ""),
                 make_param_doc("[<lod_begin>]", ""),
-                make_param_doc("[<lod_end>]", "")
+                make_param_doc("[<lod_end>]", ""),
             ],
         }
     }

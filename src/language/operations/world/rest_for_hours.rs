@@ -28,7 +28,7 @@ impl Operation for RestForHoursOp {
             param_docs: vec![
                 make_param_doc("<rest_time_in_hours>", ""),
                 make_param_doc("[time_speed_multiplier]", ""),
-                make_param_doc("[remain_attackable]","")
+                make_param_doc("[remain_attackable]", ""),
             ],
         }
     }

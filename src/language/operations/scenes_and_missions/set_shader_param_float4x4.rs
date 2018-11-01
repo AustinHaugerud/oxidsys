@@ -23,11 +23,9 @@ impl Operation for SetShaderParamFloat4x4Op {
 
     fn param_info(&self) -> ParamInfo {
         ParamInfo {
-    num_required : 1,
-    num_optional : 0,
-    param_docs : vec![
-        make_param_doc("<parameter_name>", "")
-    ]
-}
+            num_required: 1,
+            num_optional: 0,
+            param_docs: vec![make_param_doc("<parameter_name>", "")],
+        }
     }
 }

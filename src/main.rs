@@ -1,19 +1,24 @@
 #![allow(dead_code)] // Temporary - We expect a lot of dead code for now, when completion is closer
                      // turn dead code warnings back on.
 
-#[macro_use]
-extern crate serde_json;
-
 extern crate clap;
 
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 
+#[macro_use]
+extern crate lazy_static;
+
+#[macro_use]
+extern crate json;
+
+mod commands;
 mod compiler;
 mod component;
 mod documentation_service;
 mod language;
+mod loader;
 mod module_creation;
 
 use clap::App;
@@ -41,7 +46,12 @@ fn main() {
             SubCommand::with_name("new")
                 .about("Create new module")
                 .arg(Arg::with_name("name").required(true)),
-        ).get_matches();
+        ).subcommand(
+        SubCommand::with_name("build")
+            .about("Build a target.")
+            .arg(Arg::with_name("target").required(true))
+        )
+        .get_matches();
 
     if let Some(documentation_matches) = matches.subcommand_matches("documentation") {
         let op_ident = documentation_matches
@@ -56,6 +66,16 @@ fn main() {
             .expect("Bug: No name given when expected.");
         if module_creation::blank_module::init_blank_module(name).is_err() {
             println!("Failed to create new module.");
+        }
+    }
+
+    if let Some(build_matches) = matches.subcommand_matches("build") {
+        let target = build_matches.value_of("target").expect("Bug: No build target when expected.");
+        if let Err(e) = commands::build::execute_compiler(target) {
+            println!("Build failed: {}", e);
+        }
+        else {
+            println!("Build success.");
         }
     }
 }

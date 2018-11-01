@@ -29,7 +29,7 @@ impl Operation for AgentSetScriptedDestinationOp {
                 make_param_doc("<agent_id>", ""),
                 make_param_doc("<position>", ""),
                 make_param_doc("[auto_set_z_to_ground_level]", ""),
-                make_param_doc("[no_rethink]", "")
+                make_param_doc("[no_rethink]", ""),
             ],
         }
     }

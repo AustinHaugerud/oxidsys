@@ -16,11 +16,20 @@ impl<'a> DocumentationService<'a> {
         DocumentationService { operations: map }
     }
 
-    pub fn request_documentation(&self, op_identifier: &str) -> &str {
+    pub fn request_documentation(&self, op_identifier: &str) -> String {
         if let Some(op) = self.operations.get(op_identifier) {
-            op.documentation()
+            compile_docs(op)
         } else {
-            INVALID_OP_RESPONSE
+            INVALID_OP_RESPONSE.to_string()
         }
     }
+}
+
+fn compile_docs(operand: &Box<Operation>) -> String {
+    let mut result = operand.documentation().to_string();
+    for param in operand.param_info().get_param_docs() {
+        result += &format!("{}: {}\n", param.0, param.1);
+    }
+
+    result
 }

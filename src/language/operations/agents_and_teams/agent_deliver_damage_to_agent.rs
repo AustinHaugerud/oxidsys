@@ -29,7 +29,7 @@ impl Operation for AgentDeliverDamageToAgentOp {
                 make_param_doc("<agent_id_deliverer>", ""),
                 make_param_doc("<agent_id>", ""),
                 make_param_doc("[damage_amount]", ""),
-                make_param_doc("[weapon_item_id]", "")
+                make_param_doc("[weapon_item_id]", ""),
             ],
         }
     }

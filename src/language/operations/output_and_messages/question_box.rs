@@ -30,7 +30,7 @@ impl Operation for QuestionBoxOp {
                 make_param_doc("<yes_string_id>", ""),
                 make_param_doc("<no_string_id>", ""),
                 make_param_doc("[<yes_string_id>]", ""),
-                make_param_doc("[<no_string_id>]", "")
+                make_param_doc("[<no_string_id>]", ""),
             ],
         }
     }
