@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod assign;
 pub mod conditional;
 pub mod fixed_point;

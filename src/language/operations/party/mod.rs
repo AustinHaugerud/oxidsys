@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod add_companion_party;
 pub mod add_gold_to_party;
 pub mod context_menu_add_item;

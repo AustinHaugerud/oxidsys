@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod agent_get_player_id;
 pub mod ban_player;
 pub mod ban_player_using_saved_ban_info;

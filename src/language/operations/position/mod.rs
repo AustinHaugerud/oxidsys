@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod copy_position;
 pub mod get_angle_between_positions;
 pub mod get_distance_between_positions;

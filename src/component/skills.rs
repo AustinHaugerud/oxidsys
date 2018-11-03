@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::fs::File;
-use std::path;
 use std::io::prelude::*;
+use std::path;
 
 use json;
 

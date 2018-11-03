@@ -1,9 +1,8 @@
-
 #[derive(Parser)]
 #[grammar = "language/oxid.pest"]
 pub struct OxidParser;
 
-fn filter(input : &str) -> String {
+fn filter(input: &str) -> String {
     input.replace("\n", "").replace("\r", "").replace("\t", "")
 }
 

@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod shuffle_range;
 pub mod store_random;
 pub mod store_random_in_range;

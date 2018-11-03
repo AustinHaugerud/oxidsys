@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod eq;
 pub mod ge;
 pub mod gt;

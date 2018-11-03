@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod dialog_box;
 pub mod display_debug_message;
 pub mod display_log_message;

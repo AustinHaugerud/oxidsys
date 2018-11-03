@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod set_result_string;
 pub mod store_script_param;
 pub mod store_script_param_1;

@@ -46,11 +46,10 @@ fn main() {
                 .about("Create new module")
                 .arg(Arg::with_name("name").required(true)),
         ).subcommand(
-        SubCommand::with_name("build")
-            .about("Build a target.")
-            .arg(Arg::with_name("target").required(true))
-        )
-        .get_matches();
+            SubCommand::with_name("build")
+                .about("Build a target.")
+                .arg(Arg::with_name("target").required(true)),
+        ).get_matches();
 
     if let Some(documentation_matches) = matches.subcommand_matches("documentation") {
         let op_ident = documentation_matches
@@ -69,11 +68,12 @@ fn main() {
     }
 
     if let Some(build_matches) = matches.subcommand_matches("build") {
-        let target = build_matches.value_of("target").expect("Bug: No build target when expected.");
+        let target = build_matches
+            .value_of("target")
+            .expect("Bug: No build target when expected.");
         if let Err(e) = commands::build::execute_compiler(target) {
             println!("Build failed: {}", e);
-        }
-        else {
+        } else {
             println!("Build success.");
         }
     }

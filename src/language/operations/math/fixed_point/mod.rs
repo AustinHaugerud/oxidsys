@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod convert_from_fixed_point;
 pub mod convert_to_fixed_point;
 pub mod set_fixed_point_multiplier;

@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod store_repeat_object;
 pub mod talk_info_set_line;
 pub mod talk_info_set_relation_bar;

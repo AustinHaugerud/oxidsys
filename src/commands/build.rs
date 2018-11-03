@@ -1,17 +1,16 @@
 use compiler::*;
 
-fn load_compiler(id : &str) -> Option<Box<Compile>> {
+fn load_compiler(id: &str) -> Option<Box<Compile>> {
     match id {
         "skills" => Some(load_skills_compiler("skills/")),
-        _ => None
+        _ => None,
     }
 }
 
-pub fn execute_compiler(id : &str) -> Result<(), String> {
+pub fn execute_compiler(id: &str) -> Result<(), String> {
     if let Some(compiler) = load_compiler(id) {
         compiler.compile()
-    }
-    else {
+    } else {
         Err("Invalid target.".to_owned())
     }
 }

@@ -1,4 +1,4 @@
-use language::operations::{Operation};
+use language::operations::Operation;
 pub mod str_encode_url;
 pub mod str_store_player_username;
 pub mod str_store_server_name;
