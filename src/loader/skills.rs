@@ -1,5 +1,4 @@
 use std::fs;
-use std::path;
 
 use component::skills::SkillDefinition;
 

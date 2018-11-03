@@ -2,7 +2,6 @@ use compiler::Compile;
 use loader::skills;
 use compiler::common::replace_spaces;
 
-use std::fs::File;
 use std::fs;
 
 pub struct SkillsCompiler {

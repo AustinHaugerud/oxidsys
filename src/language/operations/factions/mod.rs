@@ -1,4 +1,4 @@
-use language::operations::{make_param_doc, Operation, ParamInfo};
+use language::operations::{Operation};
 pub mod faction_get_color;
 pub mod faction_get_slot;
 pub mod faction_set_color;

@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use compiler::*;
 
 fn load_compiler(id : &str) -> Option<Box<Compile>> {

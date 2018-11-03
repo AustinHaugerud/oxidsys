@@ -1,4 +1,4 @@
-use language::operations::{make_param_doc, Operation, ParamInfo};
+use language::operations::{Operation, ParamInfo};
 
 pub struct MultiplayerMakeEveryoneEnemyOp;
 
