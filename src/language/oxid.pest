@@ -1,25 +1,87 @@
-identifier = { 'a'..'z' ~ ( 'a'..'z' | "_" | ASCII_DIGIT)* }
+identifier = @{ 'a'..'z' ~ ( 'a'..'z' | "_" | ASCII_DIGIT)* }
 
-dec_literal = { ASCII_DIGIT+ }
-hex_literal = { "0x" ~ (ASCII_DIGIT | 'A'..'F' | 'a'..'f' )+ }
-bin_literal = { "0b" ~ ('0'..'1')+ }
-numeric_literal = { dec_literal | hex_literal | bin_literal }
+dec_literal = @{ ASCII_DIGIT+ }
+hex_literal = @{ "0x" ~ ASCII_HEX_DIGIT+ }
+bin_literal = @{ "0b" ~ ASCII_BIN_DIGIT+ }
+numeric_literal = { ("-")? ~ (dec_literal | hex_literal | bin_literal) }
 string_literal = { "'" ~ (ASCII_ALPHANUMERIC | " ")* ~ "'" }
 
-EOL = { "\n" | "\r" }
-PAD = { EOL | " " }
+PAD = _{ " " }
+PADDING = _{ PAD* }
+RPADDING = _{ PAD+ }
 
-operand_call = { PAD* ~ identifier ~ (identifier | numeric_literal | " ")* ~ ";" ~ PAD* }
+STATEMENT_TERM = _{ PADDING ~ ";" }
+
+operand_call = { PAD* ~ identifier ~ (identifier | numeric_literal | PAD)*  }
 
 variable_scope_keyword = { "local" | "global" }
-variable_declaration = { PAD* ~ variable_scope_keyword ~ identifier ~ ";" ~ PAD* }
+variable_declaration = {
+    PADDING ~ variable_scope_keyword ~ RPADDING ~ identifier ~ (PADDING ~ eq ~ PADDING ~ expression)?
+}
 
-param_declaration = { PAD* ~ "param" ~ PAD* ~ identifier ~ ";" ~ PAD* }
+variable_change = {
+    PADDING ~ identifier ~ PADDING ~ change_op ~ PADDING ~ expression
+}
 
-statement = { operand_call | variable_declaration | param_declaration }
+param_declaration = { PADDING ~ "param" ~ PAD+ ~ identifier }
+
+register_identifier = { "reg" ~ (ASCII_DIGIT)+ }
+register_declaration = { PADDING ~ "register" ~ PADDING ~ register_identifier }
+
+string_register_identifier = { "s" ~ (ASCII_DIGIT)+ }
+string_register_declaration = {
+    PADDING ~ "sregister" ~ PADDING ~ string_register_identifier
+}
+
+pos_register_identifier = { "p" ~ (ASCII_DIGIT)+ }
+pos_register_declaration = {
+    PADDING ~ "pregister" ~ PADDING ~ pos_register_identifier
+}
+
+any_register_declaration = {
+    register_declaration |
+    string_register_declaration |
+    pos_register_declaration
+}
+
+eq  = @{ "=" }
+add = @{ "+" }
+sub = @{ "-" }
+mul = @{ "*" }
+div = @{ "/" }
+modulus = @{ "%" }
+pow = @{ "^" }
+
+addeq = @{ "+=" }
+subeq = @{ "-=" }
+muleq = @{ "*=" }
+diveq = @{ "/=" }
+poweq = @{ "^=" }
+modeq = @{ "%=" }
+
+m_op = { add | sub | mul | div | modulus | pow }
+
+change_op = { eq | addeq | subeq | muleq | diveq | poweq | modeq }
+
+expression = { PADDING ~ term ~ PADDING ~ (m_op ~ PADDING ~ term)* }
+term = {
+    PADDING ~ numeric_literal ~ PADDING |
+    PADDING ~ identifier ~ PADDING |
+    PADDING ~ "(" ~ PADDING ~ expression ~ PADDING ~ ")" ~ PADDING }
+
+statement = {
+    (any_register_declaration |
+    param_declaration |
+    variable_declaration |
+    variable_change |
+    operand_call) ~
+    STATEMENT_TERM
+}
 
 file = {
     SOI ~
+    PADDING ~
     statement* ~
+    PADDING ~
     EOI
 }
