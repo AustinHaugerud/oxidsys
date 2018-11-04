@@ -376,10 +376,6 @@ const OPMASK_LOCAL_VARIABLE: u64 = (TAG_LOCAL_VARIABLE as u64) << (OP_NUM_VALUE_
 const OPMASK_QUICK_STRING: u64 = (TAG_QUICK_STRING as u64) << (OP_NUM_VALUE_BITS as u64);
 
 pub fn reg(register_number: u32) -> u64 {
-    if register_number < 0 {
-        panic!("Error register_number invalid.");
-    }
-
     OPMASK_REGISTER | (register_number as u64)
 }
 

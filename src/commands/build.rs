@@ -1,8 +1,10 @@
 use compiler::*;
 
+
 fn load_compiler(id: &str) -> Option<Box<Compile>> {
     match id {
         "skills" => Some(load_skills_compiler("skills/")),
+        "music" => Some(load_music_compiler("music/")),
         _ => None,
     }
 }
