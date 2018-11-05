@@ -14,6 +14,16 @@ pub struct OpCall {
     args : Vec<String>,
 }
 
+impl OpCall {
+    pub fn get_op_id(&self) -> &str {
+        &self.op_id
+    }
+
+    pub fn get_args(&self) -> &Vec<String> {
+        &self.args
+    }
+}
+
 #[derive(Copy, Clone, Debug)]
 pub enum RegisterKind {
     Numeric,
@@ -37,10 +47,30 @@ pub struct RegisterDecl {
     reg_id : String,
 }
 
+impl RegisterDecl {
+    pub fn get_kind(&self) -> RegisterKind {
+        self.kind
+    }
+
+    pub fn get_reg_id(&self) -> &str {
+        &self.reg_id
+    }
+}
+
 #[derive(Debug)]
 pub struct ParamDecl {
     pos : u32,
     id : String,
+}
+
+impl ParamDecl {
+    pub fn get_pos(&self) -> u32 {
+        self.pos
+    }
+
+    pub fn get_id(&self) -> &str {
+        &self.id
+    }
 }
 
 lazy_static! {
@@ -63,6 +93,20 @@ pub struct VarDecl {
     id : String,
     scope : VarScope,
     init_instructions : Vec<OpCall>
+}
+
+impl VarDecl {
+    pub fn get_id(&self) -> &str {
+        &self.id
+    }
+
+    pub fn get_scope(&self) -> VarScope {
+        self.scope
+    }
+
+    pub fn get_init_instructions(&self) -> &Vec<OpCall> {
+        &self.init_instructions
+    }
 }
 
 #[derive(Debug)]
