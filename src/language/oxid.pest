@@ -12,7 +12,8 @@ RPADDING = _{ PAD+ }
 
 STATEMENT_TERM = _{ PADDING ~ ";" }
 
-operand_call = { PAD* ~ identifier ~ (identifier | numeric_literal | PAD)*  }
+operand_call_arg = { identifier | numeric_literal }
+operand_call = { PAD* ~ identifier ~ (operand_call_arg | PAD)*  }
 
 variable_scope_keyword = { "local" | "global" }
 variable_declaration = {
@@ -25,24 +26,13 @@ variable_change = {
 
 param_declaration = { PADDING ~ "param" ~ PAD+ ~ identifier }
 
-register_identifier = { "reg" ~ (ASCII_DIGIT)+ }
-register_declaration = { PADDING ~ "register" ~ PADDING ~ register_identifier }
+nregister = { "register" }
+sregister = { "sregister" }
+pregister = { "pregister" }
 
-string_register_identifier = { "s" ~ (ASCII_DIGIT)+ }
-string_register_declaration = {
-    PADDING ~ "sregister" ~ PADDING ~ string_register_identifier
-}
+register_kind_id = { nregister | sregister | pregister }
 
-pos_register_identifier = { "p" ~ (ASCII_DIGIT)+ }
-pos_register_declaration = {
-    PADDING ~ "pregister" ~ PADDING ~ pos_register_identifier
-}
-
-any_register_declaration = {
-    register_declaration |
-    string_register_declaration |
-    pos_register_declaration
-}
+any_register_declaration = { PADDING ~ register_kind_id ~ PADDING ~ identifier }
 
 eq  = @{ "=" }
 add = @{ "+" }
